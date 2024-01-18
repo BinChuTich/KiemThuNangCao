@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/Views/QuanLyTaiSan.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/Utilities/Support.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/Application/PanelBorder.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/test/Repositories/Impl/DichVuRepositoryImplTest.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/Application/ListMenu.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/Application/EventMenuSelected.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/test/Views/test/Views/QuanLyPhongTroTest.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/test/Repositories/Impl/KhachHangRepositoryImplTest.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/DomainModel/DichVu.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/test/Repositories/Impl/PhongTroRepositoryImplTest.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/Utilities/XDate.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/test/Repositories/Impl/TaiSanRepositoryImplTest.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/Application/Menu.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/test/Repositories/Impl/date.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/DomainModel/HopDong.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/DomainModel/LoaiPhong.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/DomainModel/Test.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/Application/FormHome.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/Utilities/DBConnect.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/Views/QuanLyHoaDonPhong.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/Views/QuanLyPhongTro.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/Views/QuanLyHopDong.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/Repositories/Impl/DichVuRepositoryImpl.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/test/Repositories/Impl/HoaDonPhongRepositoryImplTest.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/Views/QuanLyDichVu.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/DomainModel/HoaDonDienNuoc.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/DomainModel/HoaDonPhong.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/Views/QuanLyHoaDonDienNuoc.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/Application/ModelMenu.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/Application/ManHinhChinh.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/DomainModel/TaiSan.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/Views/QuanLyKhachHang.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/DomainModel/KhachHang.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/Application/MenuItem.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/test/Views/test/DomainModel/DichVuTest.java</file>
+            <file>file:/F:/KiemThuNangCao/DuAn1_PRO1041_Nhom3-main/DuAn1_PRO1041/src/DomainModel/HopDongTaiSan.java</file>
+        </group>
+    </open-files>
+</project-private>
