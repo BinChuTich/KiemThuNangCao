@@ -39,7 +39,7 @@ public class HoaDonPhong {
         this.idPT = idPT;
         this.idKH = idKH;
     }
-    
+
     public HoaDonPhong(String id, String ma, Date ngTao, double tongTien, boolean trangThai, String idPT, String idKH, String idHD) {
         this.id = id;
         this.ma = ma;
@@ -63,7 +63,7 @@ public class HoaDonPhong {
         this.idHD = idHD;
     }
 
-    public HoaDonPhong(String phong101) {
+    public HoaDonPhong(String ma1) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

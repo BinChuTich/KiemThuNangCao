@@ -167,6 +167,11 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
 
         jLabel10.setText("Nhập SDT Khách Hàng cần tìm: ");
 
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
+            }
+        });
         txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtSearchKeyReleased(evt);
@@ -279,14 +284,13 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        if (txtMa.getText().trim().isEmpty() 
+        if (txtMa.getText().trim().isEmpty()
                 && txtTen.getText().trim().isEmpty()
                 && txtCCCD.getText().trim().isEmpty()
                 && txtNgaySinh.getText().trim().isEmpty()
                 && txtEmail.getText().trim().isEmpty()
                 && txtDiaChi.getText().trim().isEmpty()
-                && !txtSDT.getText().trim().isEmpty()
-                ) {
+                && !txtSDT.getText().trim().isEmpty()) {
             KhachHang kh = getSDT();
             service.addNhanh(kh);
             lists = service.getAll();
@@ -365,8 +369,9 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
             service.update(kh, id);
             lists = service.getAll();
             showDataTable(lists);
-        } else
+        } else {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn dòng cần sửa!");
+        }
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
@@ -405,6 +410,11 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         // TODO add your handling code here:
         showDataTable(timKiem(txtSearch.getText()));
     }//GEN-LAST:event_txtSearchKeyReleased
+
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchActionPerformed
+
     public void showDataTable(List<KhachHang> lists) {
         dtm.setRowCount(0);
         for (KhachHang kh : lists) {
@@ -497,7 +507,6 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         }
         return true;
     }
-
 
     public void detail(int index) {
         lists = service.getAll();

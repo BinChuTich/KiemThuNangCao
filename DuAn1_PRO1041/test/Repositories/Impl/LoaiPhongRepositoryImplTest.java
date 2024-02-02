@@ -8,140 +8,466 @@ import DomainModel.LoaiPhong;
 import Repositories.ILoaiPhongRepository;
 import java.util.List;
 import java.util.UUID;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Before;
 
 /**
  *
- * @author quach
+ * @author nhatc
  */
 public class LoaiPhongRepositoryImplTest {
-    
-    private ILoaiPhongRepository loaiPhongRepository;
-    
-    @Before
-    public void setUp() {
-        loaiPhongRepository = new LoaiPhongRepositoryImpl();
-    }
-    
+
+    private ILoaiPhongRepository lpRepository;
+
     public LoaiPhongRepositoryImplTest() {
     }
 
-    @Test
-    public void testGetAll() {
-        List<LoaiPhong> loaiPhongs = loaiPhongRepository.getAll();
+    @BeforeClass
+    public static void setUpClass() {
+    }
 
-        assertNotNull(loaiPhongs);
-//        assertFalse(loaiPhongs.isEmpty());
+    @AfterClass
+    public static void tearDownClass() {
+    }
+
+    @Before
+    public void setUp() {
+        lpRepository = new LoaiPhongRepositoryImpl();
+    }
+
+    @After
+    public void tearDown() {
     }
 
     @Test
-    public void testGetListMa() {
-        List<String> listMa = loaiPhongRepository.getListMa();
-
-        assertNotNull(listMa);
-        assertFalse(listMa.isEmpty());
-    }
-
-    @Test
-    public void testGetListTen() {
-        List<String> listTen = loaiPhongRepository.getListTen();
-
-        assertNotNull(listTen);
-        assertFalse(listTen.isEmpty());
-    }
-
-    @Test
-    public void testAdd() {
+    public void addTestFullInput() {
         UUID id = UUID.randomUUID();
-        LoaiPhong newLoaiPhong = new LoaiPhong(String.valueOf(id).toUpperCase(), "hahah11", "TestTen", 25.0f, 100.0);
+        String testId = String.valueOf(id).toUpperCase();
+        LoaiPhong lp = new LoaiPhong(testId, "PH23737", "vip", 200, 1000000);
 
-        // Thực hiện thêm đối tượng LoaiPhong vào cơ sở dữ liệu
-        boolean result = loaiPhongRepository.add(newLoaiPhong);
-
-        assertTrue(result); // Kiểm tra xem thêm có thành công hay không
-
-        // Kiểm tra xem đối tượng LoaiPhong đã được thêm vào cơ sở dữ liệu chưa
-        LoaiPhong retrievedLoaiPhong = loaiPhongRepository.getAll()
-                .stream()
-                .filter(lp -> lp.getId().equals(newLoaiPhong.getId()))
-                .findFirst()
-                .orElse(null);
-
-        assertNotNull(retrievedLoaiPhong);
-        assertEquals("hahah11", retrievedLoaiPhong.getMa());
-        assertEquals("TestTen", retrievedLoaiPhong.getTen());
-        assertEquals(25.0f, retrievedLoaiPhong.getDienTich(), 0.01);
-        assertEquals(100.0, retrievedLoaiPhong.getGia(), 0.01);
-        
-        assertTrue(loaiPhongRepository.delete(newLoaiPhong.getId()));
-    }
-
-    @Test
-    public void testUpdate() {
-        UUID id = UUID.randomUUID();
-        String idTest = String.valueOf(id).toUpperCase();
-        LoaiPhong newLoaiPhong = new LoaiPhong(idTest, "Ma011", "TestTen", 25.0f, 100.0);
-        assertTrue(loaiPhongRepository.add(newLoaiPhong));
-
-        // Tạo một đối tượng LoaiPhong mới để cập nhật thông tin
-        LoaiPhong updatedLoaiPhong = new LoaiPhong(idTest, "UpdatedMa1", "UpdatedTen", 30.0f, 120.0);
-
-        // Thực hiện cập nhật đối tượng LoaiPhong trong cơ sở dữ liệu
-        boolean result = loaiPhongRepository.update(updatedLoaiPhong, idTest);
-
-        assertTrue(result); // Kiểm tra xem cập nhật có thành công hay không
-
-        // Kiểm tra xem đối tượng LoaiPhong đã được cập nhật đúng thông tin chưa
-        LoaiPhong retrievedLoaiPhong = loaiPhongRepository.getAll()
-                .stream()
-                .filter(lp -> lp.getId().equals(updatedLoaiPhong.getId()))
-                .findFirst()
-                .orElse(null);
-
-        assertNotNull(retrievedLoaiPhong);
-        assertEquals("UpdatedMa1", retrievedLoaiPhong.getMa());
-        assertEquals("UpdatedTen", retrievedLoaiPhong.getTen());
-        assertEquals(30.0f, retrievedLoaiPhong.getDienTich(), 0.01);
-        assertEquals(120.0, retrievedLoaiPhong.getGia(), 0.01);
-        
-        assertTrue(loaiPhongRepository.delete(idTest));
-    }
-
-    @Test
-    public void testDelete() {
-        UUID id = UUID.randomUUID();
-        String idTest = String.valueOf(id).toUpperCase();
-        LoaiPhong loaiPhongToDelete = new LoaiPhong(idTest, "Ma011", "TestTen", 25.0f, 100.0);
-        assertTrue(loaiPhongRepository.add(loaiPhongToDelete));
-        
-        boolean result = loaiPhongRepository.delete(idTest);
-        
+        // add object to db & check
+        boolean result = lpRepository.add(lp);
         assertTrue(result);
-        
-        LoaiPhong deletedLoaiPhong = loaiPhongRepository.getAll()
-                .stream()
-                .filter(lp -> lp.getId().equals(loaiPhongToDelete.getId()))
-                .findFirst()
-                .orElse(null);
 
-        assertNull(deletedLoaiPhong);
+        if (result) {
+            System.out.println("Them thanh cong");
+            // re-check 1: table isn't null
+            assertNotNull(lpRepository.getAll());
+            // re-check 2: added information is correct
+            assertEquals(testId, lpRepository.getAll().get(0).getId());
+            assertEquals("PH23737", lpRepository.getAll().get(0).getMa());
+            assertEquals("vip", lpRepository.getAll().get(0).getTen());
+            assertEquals(200, lpRepository.getAll().get(0).getDienTich(), 0.0);
+            assertEquals(1000000, lpRepository.getAll().get(0).getGia(), 0.0);
+            // clean-up: remove object for another test
+            boolean delete = lpRepository.delete(testId);
+            assertTrue(delete);
+        }
     }
 
     @Test
-    public void testTimKiem() {
+    public void addTestMaTrong() {
         UUID id = UUID.randomUUID();
-        LoaiPhong newLoaiPhong = new LoaiPhong(String.valueOf(id).toUpperCase(), "TestMa10", "TestTen11", 25.0f, 100.0);
+        String testId = String.valueOf(id).toUpperCase();
+        LoaiPhong lp = new LoaiPhong(testId, "", "vip", 200, 1000000);
 
-        assertTrue(loaiPhongRepository.add(newLoaiPhong)); // Kiểm tra xem thêm có thành công hay không
-        
-        List<LoaiPhong> result = loaiPhongRepository.TimKiem("TestTen11");
-        
-        assertTrue(result.size() > 0);
-        assertTrue(result.stream().anyMatch(lp -> lp.getId().equals(newLoaiPhong.getId())));
-        
-        assertTrue(loaiPhongRepository.delete(newLoaiPhong.getId()));
+        // add object to db & check
+        boolean result = lpRepository.add(lp);
+        if (result) {
+            System.out.println("Them thanh cong?");
+            boolean delete = lpRepository.delete(testId);
+            assertTrue(delete);
+        }
+        assertFalse(result);
     }
-    
+
+    @Test
+    public void addTestMaSaiDinhDang() {
+        UUID id = UUID.randomUUID();
+        String testId = String.valueOf(id).toUpperCase();
+        LoaiPhong lp = new LoaiPhong(testId, "@#!", "vip", 200, 1000000);
+
+        // add object to db & check
+        boolean result = lpRepository.add(lp);
+        if (result) {
+            System.out.println("Them thanh cong?");
+            boolean delete = lpRepository.delete(testId);
+            assertTrue(delete);
+        }
+        assertFalse(result);
+    }
+
+    @Test
+    public void addTestTenPhongTrong() {
+        UUID id = UUID.randomUUID();
+        String testId = String.valueOf(id).toUpperCase();
+        LoaiPhong lp = new LoaiPhong(testId, "PH23737", "", 200, 1000000);
+
+        // add object to db & check
+        boolean result = lpRepository.add(lp);
+        if (result) {
+            System.out.println("Them thanh cong?");
+            boolean delete = lpRepository.delete(testId);
+            assertTrue(delete);
+        }
+        assertFalse(result);
+    }
+
+    @Test
+    public void addTestTenPhongChuaKTDB() {
+        UUID id = UUID.randomUUID();
+        String testId = String.valueOf(id).toUpperCase();
+        LoaiPhong lp = new LoaiPhong(testId, "PH23737", "v_!_p", 200, 1000000);
+
+        // add object to db & check
+        boolean result = lpRepository.add(lp);
+        assertTrue(result);
+
+        if (result) {
+            System.out.println("Them thanh cong");
+            // re-check 1: table isn't null
+            assertNotNull(lpRepository.getAll());
+            // re-check 2: added information is correct
+            assertEquals(testId, lpRepository.getAll().get(0).getId());
+            assertEquals("PH23737", lpRepository.getAll().get(0).getMa());
+            assertEquals("v_!_p", lpRepository.getAll().get(0).getTen());
+            assertEquals(200, lpRepository.getAll().get(0).getDienTich(), 0.0);
+            assertEquals(1000000, lpRepository.getAll().get(0).getGia(), 0.0);
+            // clean-up: remove object for another test
+            boolean delete = lpRepository.delete(testId);
+            assertTrue(delete);
+        }
+    }
+
+    @Test
+    public void addTestDienTichAm() {
+        UUID id = UUID.randomUUID();
+        String testId = String.valueOf(id).toUpperCase();
+        LoaiPhong lp = new LoaiPhong(testId, "PH23737", "vip", -1, 1000000);
+
+        // add object to db & check
+        boolean result = lpRepository.add(lp);
+        if (result) {
+            System.out.println("Them thanh cong?");
+            boolean delete = lpRepository.delete(testId);
+            assertTrue(delete);
+        }
+        assertFalse(result);
+    }
+
+    @Test
+    public void addTestDienTich0() {
+        UUID id = UUID.randomUUID();
+        String testId = String.valueOf(id).toUpperCase();
+        LoaiPhong lp = new LoaiPhong(testId, "PH23737", "vip", 0, 1000000);
+
+        // add object to db & check
+        boolean result = lpRepository.add(lp);
+        if (result) {
+            System.out.println("Them thanh cong?");
+            boolean delete = lpRepository.delete(testId);
+            assertTrue(delete);
+        }
+        assertFalse(result);
+    }
+
+    @Test
+    public void addTestDienTichChu() {
+        UUID id = UUID.randomUUID();
+        String testId = String.valueOf(id).toUpperCase();
+        LoaiPhong lp = new LoaiPhong(testId, "PH23737", "vip", Float.valueOf("2tram"), 1000000);
+
+        // add object to db & check
+        boolean result = lpRepository.add(lp);
+        if (result) {
+            System.out.println("Them thanh cong?");
+            boolean delete = lpRepository.delete(testId);
+            assertTrue(delete);
+        }
+        assertFalse(result);
+    }
+
+    @Test
+    public void addTestGiaChu() {
+        UUID id = UUID.randomUUID();
+        String testId = String.valueOf(id).toUpperCase();
+        LoaiPhong lp = new LoaiPhong(testId, "PH23737", "vip", 200, Float.valueOf("1tr"));
+
+        // add object to db & check
+        boolean result = lpRepository.add(lp);
+        if (result) {
+            System.out.println("Them thanh cong?");
+            boolean delete = lpRepository.delete(testId);
+            assertTrue(delete);
+        }
+        assertFalse(result);
+    }
+
+    @Test
+    public void addTestGia0() {
+        UUID id = UUID.randomUUID();
+        String testId = String.valueOf(id).toUpperCase();
+        LoaiPhong lp = new LoaiPhong(testId, "PH23737", "vip", 200, 0);
+
+        // add object to db & check
+        boolean result = lpRepository.add(lp);
+        if (result) {
+            System.out.println("Them thanh cong?");
+            boolean delete = lpRepository.delete(testId);
+            assertTrue(delete);
+        }
+        assertFalse(result);
+    }
+
+    @Test
+    public void addTestGiaAm() {
+        UUID id = UUID.randomUUID();
+        String testId = String.valueOf(id).toUpperCase();
+        LoaiPhong lp = new LoaiPhong(testId, "PH23737", "vip", 200, -500000);
+
+        // add object to db & check
+        boolean result = lpRepository.add(lp);
+        if (result) {
+            System.out.println("Them thanh cong?");
+            boolean delete = lpRepository.delete(testId);
+            assertTrue(delete);
+        }
+        assertFalse(result);
+    }
+
+    @Test
+    public void updateTestFullChange() {
+        // add new
+        UUID id = UUID.randomUUID();
+        String testId = String.valueOf(id).toUpperCase();
+        LoaiPhong lp = new LoaiPhong(testId, "PH23737", "vip", 200, 1000000);
+        assertTrue(lpRepository.add(lp));
+
+        // update info
+        LoaiPhong newLP = new LoaiPhong(testId, "PH20252", "p2", 150, 1000001);
+        boolean result = lpRepository.update(newLP, testId);
+        assertTrue(result);
+
+        if (result) {
+            System.out.println("Cap nhat thanh cong");
+            // re-check: updated information is correct
+            assertEquals(testId, lpRepository.getAll().get(0).getId());
+            assertEquals("PH20252", lpRepository.getAll().get(0).getMa());
+            assertEquals("p2", lpRepository.getAll().get(0).getTen());
+            assertEquals(150, lpRepository.getAll().get(0).getDienTich(), 0.0);
+            assertEquals(1000001, lpRepository.getAll().get(0).getGia(), 0.0);
+            // clean-up: remove object for another test
+            boolean delete = lpRepository.delete(testId);
+            assertTrue(delete);
+        }
+    }
+
+    @Test
+    public void updateTestMaTrong() {
+        // add new
+        UUID id = UUID.randomUUID();
+        String testId = String.valueOf(id).toUpperCase();
+        LoaiPhong lp = new LoaiPhong(testId, "PH23737", "vip", 200, 1000000);
+        assertTrue(lpRepository.add(lp));
+
+        // update info
+        LoaiPhong newLP = new LoaiPhong(testId, "", "vip", 200, 1000000);
+        boolean result = lpRepository.update(newLP, testId);
+        if (result) {
+            System.out.println("Cap nhat thanh cong?");
+            boolean delete = lpRepository.delete(testId);
+            assertTrue(delete);
+        }
+        assertFalse(result);
+    }
+
+    @Test
+    public void updateTestMaSaiDinhDang() {
+        // add new
+        UUID id = UUID.randomUUID();
+        String testId = String.valueOf(id).toUpperCase();
+        LoaiPhong lp = new LoaiPhong(testId, "PH23737", "vip", 200, 1000000);
+        assertTrue(lpRepository.add(lp));
+
+        // update info
+        LoaiPhong newLP = new LoaiPhong(testId, "@=1", "vip", 200, 1000000);
+        boolean result = lpRepository.update(newLP, testId);
+        if (result) {
+            System.out.println("Cap nhat thanh cong?");
+            boolean delete = lpRepository.delete(testId);
+            assertTrue(delete);
+        }
+        assertFalse(result);
+    }
+
+    @Test
+    public void updateTestTenPhongTrong() {
+        // add new
+        UUID id = UUID.randomUUID();
+        String testId = String.valueOf(id).toUpperCase();
+        LoaiPhong lp = new LoaiPhong(testId, "PH23737", "vip", 200, 1000000);
+        assertTrue(lpRepository.add(lp));
+
+        // update info
+        LoaiPhong newLP = new LoaiPhong(testId, "PH23737", "", 200, 1000000);
+        boolean result = lpRepository.update(newLP, testId);
+        if (result) {
+            System.out.println("Cap nhat thanh cong?");
+            boolean delete = lpRepository.delete(testId);
+            assertTrue(delete);
+        }
+        assertFalse(result);
+    }
+
+    @Test
+    public void updateTestTenPhongThemKTDB() {
+        // add new
+        UUID id = UUID.randomUUID();
+        String testId = String.valueOf(id).toUpperCase();
+        LoaiPhong lp = new LoaiPhong(testId, "PH23737", "vip", 200, 1000000);
+        assertTrue(lpRepository.add(lp));
+
+        // update info
+        LoaiPhong newLP = new LoaiPhong(testId, "PH23737", "vip$", 200, 1000000);
+        boolean result = lpRepository.update(newLP, testId);
+        if (result) {
+            System.out.println("Cap nhat thanh cong?");
+            boolean delete = lpRepository.delete(testId);
+            assertTrue(delete);
+        }
+        assertFalse(result);
+    }
+
+    @Test
+    public void updateTestDienTichAm() {
+        // add new
+        UUID id = UUID.randomUUID();
+        String testId = String.valueOf(id).toUpperCase();
+        LoaiPhong lp = new LoaiPhong(testId, "PH23737", "vip", 200, 1000000);
+        assertTrue(lpRepository.add(lp));
+
+        // update info
+        LoaiPhong newLP = new LoaiPhong(testId, "PH23737", "vip", -150, 1000000);
+        boolean result = lpRepository.update(newLP, testId);
+        if (result) {
+            System.out.println("Cap nhat thanh cong?");
+            boolean delete = lpRepository.delete(testId);
+            assertTrue(delete);
+        }
+        assertFalse(result);
+    }
+
+    @Test
+    public void updateTestDienTich0() {
+        // add new
+        UUID id = UUID.randomUUID();
+        String testId = String.valueOf(id).toUpperCase();
+        LoaiPhong lp = new LoaiPhong(testId, "PH23737", "vip", 200, 1000000);
+        assertTrue(lpRepository.add(lp));
+
+        // update info
+        LoaiPhong newLP = new LoaiPhong(testId, "PH23737", "vip", 0, 1000000);
+        boolean result = lpRepository.update(newLP, testId);
+        if (result) {
+            System.out.println("Cap nhat thanh cong?");
+            boolean delete = lpRepository.delete(testId);
+            assertTrue(delete);
+        }
+        assertFalse(result);
+    }
+
+    @Test
+    public void updateTestDienTichChu() {
+        // add new
+        UUID id = UUID.randomUUID();
+        String testId = String.valueOf(id).toUpperCase();
+        LoaiPhong lp = new LoaiPhong(testId, "PH23737", "vip", 200, 1000000);
+        assertTrue(lpRepository.add(lp));
+
+        // update info
+        LoaiPhong newLP = new LoaiPhong(testId, "PH23737", "vip", Float.valueOf("2tram"), 1000000);
+        boolean result = lpRepository.update(newLP, testId);
+        if (result) {
+            System.out.println("Cap nhat thanh cong?");
+            boolean delete = lpRepository.delete(testId);
+            assertTrue(delete);
+        }
+        assertFalse(result);
+    }
+
+    @Test
+    public void updateTestGiaChu() {
+        // add new
+        UUID id = UUID.randomUUID();
+        String testId = String.valueOf(id).toUpperCase();
+        LoaiPhong lp = new LoaiPhong(testId, "PH23737", "vip", 200, 1000000);
+        assertTrue(lpRepository.add(lp));
+
+        // update info
+        LoaiPhong newLP = new LoaiPhong(testId, "PH23737", "vip", 200, Float.valueOf("1trieu"));
+        boolean result = lpRepository.update(newLP, testId);
+        if (result) {
+            System.out.println("Cap nhat thanh cong?");
+            boolean delete = lpRepository.delete(testId);
+            assertTrue(delete);
+        }
+        assertFalse(result);
+    }
+
+    @Test
+    public void updateTestGia0() {
+        // add new
+        UUID id = UUID.randomUUID();
+        String testId = String.valueOf(id).toUpperCase();
+        LoaiPhong lp = new LoaiPhong(testId, "PH23737", "vip", 200, 1000000);
+        assertTrue(lpRepository.add(lp));
+
+        // update info
+        LoaiPhong newLP = new LoaiPhong(testId, "PH23737", "vip", 200, 0);
+        boolean result = lpRepository.update(newLP, testId);
+        if (result) {
+            System.out.println("Cap nhat thanh cong?");
+            boolean delete = lpRepository.delete(testId);
+            assertTrue(delete);
+        }
+        assertFalse(result);
+    }
+
+    @Test
+    public void updateTestGiaAm() {
+        // add new
+        UUID id = UUID.randomUUID();
+        String testId = String.valueOf(id).toUpperCase();
+        LoaiPhong lp = new LoaiPhong(testId, "PH23737", "vip", 200, 1000000);
+        assertTrue(lpRepository.add(lp));
+
+        // update info
+        LoaiPhong newLP = new LoaiPhong(testId, "PH23737", "vip", 200, -1000000);
+        boolean result = lpRepository.update(newLP, testId);
+        if (result) {
+            System.out.println("Cap nhat thanh cong?");
+            boolean delete = lpRepository.delete(testId);
+            assertTrue(delete);
+        }
+        assertFalse(result);
+    }
+
+    @Test
+    public void deleteTest() {
+        UUID id = UUID.randomUUID();
+        String testId = String.valueOf(id).toUpperCase();
+        LoaiPhong lp = new LoaiPhong(testId, "PH23737", "vip", 200, 99999);
+
+        // add object to db & check
+        boolean result = lpRepository.add(lp);
+        assertTrue(result);
+
+        // delete object from db & check
+        boolean delete = lpRepository.delete(testId);
+        assertTrue(delete);
+    }
 }

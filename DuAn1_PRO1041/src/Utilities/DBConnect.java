@@ -15,26 +15,26 @@ import java.util.logging.Logger;
  * @author truon
  */
 public class DBConnect {
-     private static final String USERNAME = "sa";
-    private static final String PASSWORD = "29082003";
+
+    private static final String USERNAME = "sa";
+    private static final String PASSWORD = "123456";
     private static final String SERVER = "localhost";
     private static final String PORT = "1433";
     private static final String DATABASE_NAME = "du_an_1_FRO1041";
     private static final boolean USING_SSL = true;
-    
+
     private static String CONNECT_STRING;
-    
+
     static {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            
+
             StringBuilder connectStringBuilder = new StringBuilder();
             connectStringBuilder.append("jdbc:sqlserver://")
                     .append(SERVER).append(":").append(PORT).append(";")
                     .append("databaseName=").append(DATABASE_NAME).append(";")
                     .append("user=").append(USERNAME).append(";")
-                    .append("password=").append(PASSWORD).append(";")
-                    ;
+                    .append("password=").append(PASSWORD).append(";");
             if (USING_SSL) {
                 connectStringBuilder.append("encrypt=true;trustServerCertificate=true;");
             }
@@ -44,11 +44,11 @@ public class DBConnect {
             Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public static Connection getConnection() throws Exception {
         return DriverManager.getConnection(CONNECT_STRING);
     }
-    
+
     public static void main(String[] args) throws Exception {
         Connection conn = getConnection();
         DatabaseMetaData dbmt = conn.getMetaData();

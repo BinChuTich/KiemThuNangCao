@@ -211,6 +211,11 @@ public class QuanLyPhongTro extends javax.swing.JFrame {
 
         jLabel14.setText("Mời nhập vào Tên Phòng cần tìm: ");
 
+        txtSearchPT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchPTActionPerformed(evt);
+            }
+        });
         txtSearchPT.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtSearchPTKeyReleased(evt);
@@ -359,6 +364,11 @@ public class QuanLyPhongTro extends javax.swing.JFrame {
 
         jLabel13.setText("Mời nhập vào Loại Phòng cần tìm: ");
 
+        txtSearchLP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchLPActionPerformed(evt);
+            }
+        });
         txtSearchLP.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtSearchLPKeyReleased(evt);
@@ -525,8 +535,9 @@ public class QuanLyPhongTro extends javax.swing.JFrame {
                     }
                 }
             }
-        } else
+        } else {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn dòng cần sửa!");
+        }
     }//GEN-LAST:event_btnSuaLPActionPerformed
 
     private void tblListLPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListLPMouseClicked
@@ -616,8 +627,9 @@ public class QuanLyPhongTro extends javax.swing.JFrame {
                     }
                 }
             }
-        } else
+        } else {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn dòng cần sửa!");
+        }
     }//GEN-LAST:event_btnSuaPTActionPerformed
 
     private void btnLamMoiPTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiPTActionPerformed
@@ -629,6 +641,15 @@ public class QuanLyPhongTro extends javax.swing.JFrame {
         rdoChuaSD.setSelected(true);
         txtMoTa.setText(null);
     }//GEN-LAST:event_btnLamMoiPTActionPerformed
+
+    private void txtSearchPTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchPTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchPTActionPerformed
+
+    private void txtSearchLPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchLPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchLPActionPerformed
+
     public void showDataTablePT(List<PhongTro> lists) {
         dtm.setRowCount(0);
         for (PhongTro pt : listPT) {
