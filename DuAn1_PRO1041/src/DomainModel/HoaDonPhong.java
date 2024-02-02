@@ -63,10 +63,6 @@ public class HoaDonPhong {
         this.idHD = idHD;
     }
 
-    public HoaDonPhong(String phong101) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
     public HoaDonPhongRepositoryImpl getHdpri() {
         return hdpri;
     }

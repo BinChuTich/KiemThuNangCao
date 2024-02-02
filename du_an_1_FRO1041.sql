@@ -60,6 +60,7 @@ create table Hoadon_dien_nuoc(
 	SoDien int,
 	SoNuoc int,
 	TongTien float,
+	TienThieu float,
 	NgayTao Date,
 	TrangThai bit,
 	IDPhongTro UNIQUEIDENTIFIER,

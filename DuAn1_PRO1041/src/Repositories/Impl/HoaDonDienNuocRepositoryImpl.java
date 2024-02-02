@@ -116,7 +116,7 @@ public class HoaDonDienNuocRepositoryImpl implements IHoaDonDienNuocRepository {
                                ,[SoDien]
                                ,[SoNuoc]
                                ,[TongTien]
-                               ,[TienThieu]
+                               ,[tienThieu]
                                ,[NgayTao]
                                ,[TrangThai]
                                ,[IDPhongTro]

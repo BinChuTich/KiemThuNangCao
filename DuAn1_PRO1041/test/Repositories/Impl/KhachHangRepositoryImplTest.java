@@ -5,7 +5,9 @@
 package Repositories.Impl;
 
 import DomainModel.KhachHang;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -15,7 +17,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Chien Duong
+ * @author Thuan
  */
 public class KhachHangRepositoryImplTest {
     
@@ -24,22 +26,18 @@ public class KhachHangRepositoryImplTest {
     
     @BeforeClass
     public static void setUpClass() {
-        // Chuẩn bị các tài nguyên toàn cục trước khi chạy tất cả các test case
     }
     
     @AfterClass
     public static void tearDownClass() {
-        // Giải phóng tài nguyên toàn cục sau khi chạy tất cả các test case
     }
     
     @Before
     public void setUp() {
-        // Chuẩn bị tài nguyên cần thiết trước khi chạy mỗi test case
     }
     
     @After
     public void tearDown() {
-        // Giải phóng tài nguyên sau khi chạy mỗi test case
     }
 
     /**
@@ -47,15 +45,14 @@ public class KhachHangRepositoryImplTest {
      */
     @Test
     public void testGetAll() {
-        System.out.println("getAll");
+        System.out.println("pass");
         KhachHangRepositoryImpl instance = new KhachHangRepositoryImpl();
-        // Gọi phương thức getAll để lấy danh sách khách hàng
+//        List<KhachHang> expResult = null;
         List<KhachHang> result = instance.getAll();
-        // Kiểm tra xem kết quả có phải là null không
-        assertNotNull("Danh sách khách hàng không được là null", result);
-        // TODO: Thêm các kiểm tra khác nếu cần thiết
-        
-        // Không sử dụng fail() vì chúng ta đã có kiểm tra assertNotNull ở trên
+//        assertEquals(expResult, result);
+        assertNotNull("Danh sách khách hàng không được null",result);
+        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -65,13 +62,12 @@ public class KhachHangRepositoryImplTest {
     public void testGetListMa() {
         System.out.println("getListMa");
         KhachHangRepositoryImpl instance = new KhachHangRepositoryImpl();
-        // Gọi phương thức getListMa để lấy danh sách mã khách hàng
+//        List<String> expResult = null;
         List<String> result = instance.getListMa();
-        // Kiểm tra xem kết quả có phải là null không
-        assertNotNull("Danh sách mã khách hàng không được là null", result);
-        // TODO: Thêm các kiểm tra khác nếu cần thiết
-        
-        // Không sử dụng fail() vì chúng ta đã có kiểm tra assertNotNull ở trên
+//        assertEquals(expResult, result);
+        assertNotNull("Danh sách mã khách hàng không được để trống",result);
+        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -79,16 +75,15 @@ public class KhachHangRepositoryImplTest {
      */
     @Test
     public void testAdd() {
-        System.out.println("add");
-        KhachHang kh = new KhachHang(); // Tạo đối tượng KhachHang mới để thêm vào repository
+        System.out.println("thêm khi không điền không đủ thông tin");
+        KhachHang kh = new KhachHang();
         KhachHangRepositoryImpl instance = new KhachHangRepositoryImpl();
-        // Gọi phương thức add để thêm khách hàng
+//        boolean expResult = false;
         boolean result = instance.add(kh);
-        // Kiểm tra xem kết quả có phải là true không
-        assertTrue("Thêm khách hàng không thành công", result);
-        // TODO: Thêm các kiểm tra khác nếu cần thiết
-        
-        // Không sử dụng fail() vì chúng ta đã có kiểm tra assertTrue ở trên
+//        assertEquals(expResult, result);
+        assertTrue("Thêm khách hàng không thành công" , result);
+        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -97,16 +92,15 @@ public class KhachHangRepositoryImplTest {
     @Test
     public void testUpdate() {
         System.out.println("update");
-        KhachHang kh = new KhachHang(); // Tạo đối tượng KhachHang mới để cập nhật
-        String id = "123"; // Giả sử id của khách hàng cần cập nhật là "123"
+        KhachHang kh = new KhachHang();
+        String id = "123";
         KhachHangRepositoryImpl instance = new KhachHangRepositoryImpl();
-        // Gọi phương thức update để cập nhật khách hàng
+//        boolean expResult = false;
         boolean result = instance.update(kh, id);
-        // Kiểm tra xem kết quả có phải là true không
+//        assertEquals(expResult, result);
         assertTrue("Cập nhật khách hàng không thành công", result);
-        // TODO: Thêm các kiểm tra khác nếu cần thiết
-        
-        // Không sử dụng fail() vì chúng ta đã có kiểm tra assertTrue ở trên
+        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -115,15 +109,15 @@ public class KhachHangRepositoryImplTest {
     @Test
     public void testDelete() {
         System.out.println("delete");
-        String id = "123"; // Giả sử id của khách hàng cần xóa là "123"
+        KhachHang kh = new KhachHang();
+        String id = "123";
         KhachHangRepositoryImpl instance = new KhachHangRepositoryImpl();
-        // Gọi phương thức delete để xóa khách hàng
+//        boolean expResult = false;
         boolean result = instance.delete(id);
-        // Kiểm tra xem kết quả có phải là true không
+//        assertEquals(expResult, result);
         assertTrue("Xóa khách hàng không thành công", result);
-        // TODO: Thêm các kiểm tra khác nếu cần thiết
-        
-        // Không sử dụng fail() vì chúng ta đã có kiểm tra assertTrue ở trên
+        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -132,14 +126,76 @@ public class KhachHangRepositoryImplTest {
     @Test
     public void testAddNhanh() {
         System.out.println("addNhanh");
-        KhachHang kh = new KhachHang(); // Tạo đối tượng KhachHang mới để thêm nhanh vào repository
+        KhachHang kh = new KhachHang();
         KhachHangRepositoryImpl instance = new KhachHangRepositoryImpl();
-        // Gọi phương thức addNhanh để thêm nhanh khách hàng
+//        boolean expResult = false;
         boolean result = instance.addNhanh(kh);
-        // Kiểm tra xem kết quả có phải là true không
+//        assertEquals(expResult, result);
         assertTrue("Thêm nhanh khách hàng không thành công", result);
-        // TODO: Thêm các kiểm tra khác nếu cần thiết
-        
-        // Không sử dụng fail() vì chúng ta đã có kiểm tra assertTrue ở trên
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
+    @Test
+    public void addKH(){
+        UUID id = UUID.randomUUID();
+        System.out.println("thêm khi điền đủ thông tim");
+        KhachHang kh = new KhachHang(String.valueOf(id), "KH01", "Thuan", "030203000818",new Date("2002/02/02"), "thuan@gmail.com", "0966580403", true, "Hải Dương");
+        KhachHangRepositoryImpl instance = new KhachHangRepositoryImpl();
+        boolean result = instance.add(kh);
+        assertFalse("Thêm thành công", result);
+    }
+    @Test
+    public void addTrongMKH(){
+        System.out.println("Kiểm tra thêm đối tượng khi thiếu mã khách hàng");
+        UUID id = UUID.randomUUID();
+        KhachHang kh = new KhachHang();
+        kh.setId(String.valueOf(id));
+        kh.setTen("Thuan");
+        kh.setCccd("030203000818");
+        kh.setNgSinh(new Date("2002/02/02"));
+        kh.setEmail("thuan@gmail.com");
+        kh.setSdt("0966580403");
+        kh.setGioiTinh(true);
+        kh.setDiaChi("Hải Dương");
+        KhachHangRepositoryImpl instance = new KhachHangRepositoryImpl();
+        boolean result = instance.add(kh);
+        assertTrue("Thêm thất bại thiếu mã khách hàng", result);
+    }
+    @Test
+    public void addTrongCCCD(){
+        System.out.println("Kiểm tra thêm đối tượng khi thiếu căn cước công dân");
+        UUID id = UUID.randomUUID();
+        KhachHang kh = new KhachHang();
+        kh.setId(String.valueOf(id));
+        kh.setTen("Thuan");
+        kh.setMa("KH01");
+//        kh.setCccd("030203000818");
+        kh.setNgSinh(new Date("2002/02/02"));
+        kh.setEmail("thuan@gmail.com");
+        kh.setSdt("0966580403");
+        kh.setGioiTinh(true);
+        kh.setDiaChi("Hải Dương");
+        KhachHangRepositoryImpl instance = new KhachHangRepositoryImpl();
+        boolean result = instance.add(kh);
+        assertTrue("Thêm thất bại thiếu căn cước công dân", result);
+    }
+    @Test
+    public void addTrongNgaySinh(){
+        System.out.println("Kiểm tra thêm đối tượng khi không truyền vào ngày sinh thiếu ngày sinh");
+        UUID id = UUID.randomUUID();
+        KhachHang kh = new KhachHang();
+        kh.setId(String.valueOf(id));
+        kh.setTen("Thuan");
+        kh.setMa("KH01");
+        kh.setCccd("030203000818");
+//        kh.setNgSinh(new Date("2002/02/02"));
+        kh.setEmail("thuan@gmail.com");
+        kh.setSdt("0966580403");
+        kh.setGioiTinh(true);
+        kh.setDiaChi("Hải Dương");
+        KhachHangRepositoryImpl instance = new KhachHangRepositoryImpl();
+        boolean result = instance.add(kh);
+        assertTrue("Thêm thất bại thiếu ngày sinh", result);
+    }
+    
 }
