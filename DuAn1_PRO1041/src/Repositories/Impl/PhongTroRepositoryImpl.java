@@ -13,7 +13,10 @@ import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
-
+/**
+ *
+ * @author PC ASUS
+ */
 public class PhongTroRepositoryImpl implements IPhongTroRepository {
 
     @Override
