@@ -7,12 +7,11 @@ package DomainModel;
 import Repositories.Impl.HopDongRepositoryImpl;
 
 /**
- *
  * @author PC ASUS
  */
 public class HopDongTaiSan {
-     private HopDongRepositoryImpl hdri = new HopDongRepositoryImpl();
-    
+    private HopDongRepositoryImpl hdri = new HopDongRepositoryImpl();
+
     private String id;
     private String idHD;
     private String idTS;
@@ -26,7 +25,7 @@ public class HopDongTaiSan {
         this.idTS = idTS;
         this.soLuong = soLuong;
     }
-    
+
     public HopDongTaiSan(String id, String idHD, String idTS, int soLuong) {
         this.id = id;
         this.idHD = idHD;
@@ -65,8 +64,8 @@ public class HopDongTaiSan {
     public void setSoLuong(int soLuong) {
         this.soLuong = soLuong;
     }
-    
+
     public Object[] toDataRow() {
-        return new Object[] {hdri.getTSByIdTS(idTS),soLuong};
+        return new Object[]{hdri.getTSByIdTS(idTS), soLuong};
     }
 }

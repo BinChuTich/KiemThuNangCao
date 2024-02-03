@@ -8,10 +8,10 @@ import DomainModel.HoaDonDienNuoc;
 import Repositories.IHoaDonDienNuocRepository;
 import Repositories.Impl.HoaDonDienNuocRepositoryImpl;
 import Services.IHoaDonDienNuocService;
+
 import java.util.List;
 
 /**
- *
  * @author Bânbân
  */
 public class HoaDonDienNuocServiceImpl implements IHoaDonDienNuocService {

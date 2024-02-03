@@ -15,38 +15,37 @@ import javax.swing.ListCellRenderer;
 import javax.swing.SwingUtilities;
 
 /**
- *
  * @author truon
  */
-public class ListMenu<E extends Object> extends JList<E>{
+public class ListMenu<E extends Object> extends JList<E> {
     private final DefaultListModel model;
     private int selectedIndex = -1;
     private int overIndex = -1;
     private EventMenuSelected event;
-    
+
     public void addEventMenuSelected(EventMenuSelected event) {
         this.event = event;
     }
-    
-    
+
+
     public ListMenu() {
         model = new DefaultListModel();
         setModel(model);
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                if(SwingUtilities.isLeftMouseButton(e)) {
-                    int index =  locationToIndex(e.getPoint());
+                if (SwingUtilities.isLeftMouseButton(e)) {
+                    int index = locationToIndex(e.getPoint());
                     Object o = model.getElementAt(index);
-                    if(o instanceof ModelMenu) {
+                    if (o instanceof ModelMenu) {
                         ModelMenu menu = (ModelMenu) o;
-                        if(menu.getType() == ModelMenu.MenuType.MENU) {
+                        if (menu.getType() == ModelMenu.MenuType.MENU) {
                             selectedIndex = index;
-                            if(event != null) {
+                            if (event != null) {
                                 event.selected(index);
                             }
                         }
-                    }else {
+                    } else {
                         selectedIndex = index;
                     }
                     repaint();
@@ -63,13 +62,13 @@ public class ListMenu<E extends Object> extends JList<E>{
             @Override
             public void mouseMoved(MouseEvent e) {
                 int index = locationToIndex(e.getPoint());
-                if(index != overIndex) {
+                if (index != overIndex) {
                     Object o = model.getElementAt(index);
-                    if(o instanceof ModelMenu) {
+                    if (o instanceof ModelMenu) {
                         ModelMenu menu = (ModelMenu) o;
-                        if(menu.getType() == ModelMenu.MenuType.MENU) {
+                        if (menu.getType() == ModelMenu.MenuType.MENU) {
                             overIndex = index;
-                        }else {
+                        } else {
                             overIndex = -1;
                         }
                         repaint();
@@ -85,20 +84,20 @@ public class ListMenu<E extends Object> extends JList<E>{
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean focus) {
                 ModelMenu data;
-                if(value instanceof ModelMenu) {
+                if (value instanceof ModelMenu) {
                     data = (ModelMenu) value;
-                }else {
-                    data = new ModelMenu("", value + "",ModelMenu.MenuType.EMPTY);
+                } else {
+                    data = new ModelMenu("", value + "", ModelMenu.MenuType.EMPTY);
                 }
                 MenuItem item = new MenuItem(data);
                 item.setSelected(selectedIndex == index);
                 item.setOver(overIndex == index);
                 return item;
             }
-            
+
         };
     }
-    
+
     public void addItem(ModelMenu data) {
         model.addElement(data);
     }

@@ -7,7 +7,6 @@ package DomainModel;
 import Repositories.Impl.PhongTroRepositoryImpl;
 
 /**
- *
  * @author PC ASUS
  */
 public class PhongTro {

@@ -5,18 +5,18 @@
 package Repositories;
 
 import DomainModel.HoaDonPhong;
+
 import java.util.List;
 
 /**
- *
  * @author PC ASUS
  */
 public interface IHoaDonPhongRepository {
 
     List<HoaDonPhong> getAll();
-    
+
     List<HoaDonPhong> getListHDDH();
-    
+
     List<String> getListThangDTT(String id);
 
     List<HoaDonPhong> getListByTT(int tt);
@@ -28,8 +28,8 @@ public interface IHoaDonPhongRepository {
     List<String> getListPhong();
 
     String getTenKHByPhong(String tenPhong);
-    
-     String getIDHDByPhong(String tenPhong);
+
+    String getIDHDByPhong(String tenPhong);
 
     String getPhongById(String id);
 
@@ -38,11 +38,11 @@ public interface IHoaDonPhongRepository {
     String getIDByKH(String tenKH);
 
     String getIDByPhong(String tenPhong);
-    
+
     Double getGiaByPhong(String tenPhong);
-    
+
     int getThangTaoHDByIDPhong(String idPhong);
-    
+
     int getThoiHanNopTienByIDPhong(String idPhong);
 
     boolean add(HoaDonPhong hdp);

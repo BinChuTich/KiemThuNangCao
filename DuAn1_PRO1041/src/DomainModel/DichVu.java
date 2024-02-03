@@ -5,7 +5,6 @@
 package DomainModel;
 
 /**
- *
  * @author PC ASUS
  */
 public class DichVu {
@@ -87,7 +86,6 @@ public class DichVu {
         this.idHD = idHD;
     }
 
-    
 
     public Object[] toDataRow() {
         return new Object[]{ma, ten, gia, trangThai == true ? "Hoạt động" : "Không hoạt động"};

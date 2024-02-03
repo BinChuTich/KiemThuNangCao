@@ -11,10 +11,10 @@ import DomainModel.PhongTro;
 import DomainModel.TaiSan;
 import Repositories.Impl.HopDongRepositoryImpl;
 import Services.IHopDongService;
+
 import java.util.List;
 
 /**
- *
  * @author PC ASUS
  */
 public class HopDongServiceImpl implements IHopDongService {

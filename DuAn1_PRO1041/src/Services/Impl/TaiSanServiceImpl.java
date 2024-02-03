@@ -7,10 +7,10 @@ package Services.Impl;
 import DomainModel.TaiSan;
 import Repositories.Impl.TaiSanRepositoryImpl;
 import Services.ITaiSanService;
+
 import java.util.List;
 
 /**
- *
  * @author PC ASUS
  */
 public class TaiSanServiceImpl implements ITaiSanService {

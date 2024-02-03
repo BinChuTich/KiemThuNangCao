@@ -8,14 +8,13 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 /**
- *
  * @author truon
  */
 public class ModelMenu {
     private String icon;
     private String name;
     private MenuType type;
-    
+
     public static enum MenuType {
         TITLE, MENU, EMPTY;
     }
@@ -32,7 +31,7 @@ public class ModelMenu {
     public Icon toIcon() {
         return new ImageIcon(getClass().getResource("/Icon/" + icon + ".png"));
     }
-    
+
     public String getIcon() {
         return icon;
     }
@@ -56,5 +55,5 @@ public class ModelMenu {
     public void setType(MenuType type) {
         this.type = type;
     }
-    
+
 }

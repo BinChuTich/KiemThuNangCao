@@ -7,6 +7,7 @@ package Repositories.Impl;
 import DomainModel.TaiSan;
 import Repositories.ITaiSanRepository;
 import Utilities.DBConnect;
+
 import java.util.List;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -14,7 +15,6 @@ import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 /**
- *
  * @author PC ASUS
  */
 public class TaiSanRepositoryImpl implements ITaiSanRepository {
@@ -22,16 +22,16 @@ public class TaiSanRepositoryImpl implements ITaiSanRepository {
     @Override
     public List<TaiSan> getAll() {
         String query = """
-                       SELECT [Id]
-                             ,[MaTS]
-                             ,[TenTS]
-                             ,[Gia]
-                             ,[SoLuong]
-                         FROM [dbo].[Tai_san]
-                         ORDER BY [MaTS]
-                       """;
+                SELECT [Id]
+                      ,[MaTS]
+                      ,[TenTS]
+                      ,[Gia]
+                      ,[SoLuong]
+                  FROM [dbo].[Tai_san]
+                  ORDER BY [MaTS]
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             List<TaiSan> lists = new ArrayList<>();
             while (rs.next()) {
@@ -49,17 +49,17 @@ public class TaiSanRepositoryImpl implements ITaiSanRepository {
     public boolean add(TaiSan ts) {
         int check = 0;
         String query = """
-                       INSERT INTO [dbo].[Tai_san]
-                                  ([Id]
-                                  ,[MaTS]
-                                  ,[TenTS]
-                                  ,[Gia]
-                                  ,[SoLuong])
-                            VALUES
-                                  (?,?,?,?,?)
-                       """;
+                INSERT INTO [dbo].[Tai_san]
+                           ([Id]
+                           ,[MaTS]
+                           ,[TenTS]
+                           ,[Gia]
+                           ,[SoLuong])
+                     VALUES
+                           (?,?,?,?,?)
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, ts.getId());
             ps.setObject(2, ts.getMa());
             ps.setObject(3, ts.getTen());
@@ -76,15 +76,15 @@ public class TaiSanRepositoryImpl implements ITaiSanRepository {
     public boolean update(TaiSan ts, String id) {
         int check = 0;
         String query = """
-                       UPDATE [dbo].[Tai_san]
-                          SET [MaTS] = ?
-                             ,[TenTS] = ?
-                             ,[Gia] = ?
-                             ,[SoLuong] = ?
-                        WHERE [Id] = ?
-                       """;
+                UPDATE [dbo].[Tai_san]
+                   SET [MaTS] = ?
+                      ,[TenTS] = ?
+                      ,[Gia] = ?
+                      ,[SoLuong] = ?
+                 WHERE [Id] = ?
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, ts.getMa());
             ps.setObject(2, ts.getTen());
             ps.setObject(3, ts.getGia());
@@ -101,11 +101,11 @@ public class TaiSanRepositoryImpl implements ITaiSanRepository {
     public boolean delete(String id) {
         int check = 0;
         String query = """
-                       DELETE FROM [dbo].[Tai_san]
-                             WHERE [Id] = ?
-                       """;
+                DELETE FROM [dbo].[Tai_san]
+                      WHERE [Id] = ?
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, id);
             check = ps.executeUpdate();
         } catch (Exception e) {
@@ -117,11 +117,11 @@ public class TaiSanRepositoryImpl implements ITaiSanRepository {
     @Override
     public List<String> getListMa() {
         String query = """
-                       SELECT [MaTS]
-                         FROM [dbo].[Tai_san]
-                       """;
+                SELECT [MaTS]
+                  FROM [dbo].[Tai_san]
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             List<String> lists = new ArrayList<>();
             while (rs.next()) {

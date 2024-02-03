@@ -5,16 +5,16 @@
 package Services;
 
 import DomainModel.PhongTro;
+
 import java.util.List;
 
 /**
- *
  * @author PC ASUS
  */
 public interface IPhongTroService {
 
     List<PhongTro> getAll();
-    
+
     List<PhongTro> getListDSD();
 
     List<String> getListMa();

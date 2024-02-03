@@ -7,10 +7,10 @@ package Services.Impl;
 import DomainModel.PhongTro;
 import Repositories.Impl.PhongTroRepositoryImpl;
 import Services.IPhongTroService;
+
 import java.util.List;
 
 /**
- *
  * @author PC ASUS
  */
 public class PhongTroServiceImpl implements IPhongTroService {

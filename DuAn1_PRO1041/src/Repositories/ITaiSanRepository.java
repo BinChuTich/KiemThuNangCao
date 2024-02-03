@@ -5,16 +5,16 @@
 package Repositories;
 
 import DomainModel.TaiSan;
+
 import java.util.List;
 
 /**
- *
  * @author PC ASUS
  */
 public interface ITaiSanRepository {
 
     List<TaiSan> getAll();
-    
+
     List<String> getListMa();
 
     boolean add(TaiSan ts);

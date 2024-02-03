@@ -7,7 +7,6 @@ package ViewModel;
 import java.util.Date;
 
 /**
- *
  * @author Bânbân
  */
 public class HoaDonDienNuocViewModel {
@@ -168,11 +167,11 @@ public class HoaDonDienNuocViewModel {
 
     public double thieu() {
 
-         tienThieu = getTongTien() - tienKhachDua;
+        tienThieu = getTongTien() - tienKhachDua;
         return tienThieu;
     }
 
     public Object[] toDataRow() {
-        return new Object[]{stt, maHD, tenPhong, tenKH, ngayDong, getTongTien(),tienThieu, getTrangThai()};
+        return new Object[]{stt, maHD, tenPhong, tenKH, ngayDong, getTongTien(), tienThieu, getTrangThai()};
     }
 }

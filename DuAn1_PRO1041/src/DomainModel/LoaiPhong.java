@@ -5,7 +5,6 @@
 package DomainModel;
 
 /**
- *
  * @author PC ASUS
  */
 public class LoaiPhong {

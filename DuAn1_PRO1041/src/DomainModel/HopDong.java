@@ -5,17 +5,18 @@
 package DomainModel;
 
 import Repositories.Impl.HopDongRepositoryImpl;
+
 import java.util.Date;
+
 import Utilities.Support;
 
 /**
- *
  * @author PC ASUS
  */
 public class HopDong {
 
     private HopDongRepositoryImpl hdri = new HopDongRepositoryImpl();
-    
+
     private String id;
     private String ma;
     private double tienCoc;
@@ -144,6 +145,6 @@ public class HopDong {
     }
 
     public Object[] toDataRow() {
-        return new Object[]{ma,hdri.getTenKHById(idKH),hdri.getTenPTById(idPhongTro), giaPhong, tienCoc, ngTao, ngKT,getTrangThai()};
+        return new Object[]{ma, hdri.getTenKHById(idKH), hdri.getTenPTById(idPhongTro), giaPhong, tienCoc, ngTao, ngKT, getTrangThai()};
     }
 }

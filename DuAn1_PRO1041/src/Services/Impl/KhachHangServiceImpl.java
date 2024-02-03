@@ -7,10 +7,10 @@ package Services.Impl;
 import DomainModel.KhachHang;
 import Repositories.Impl.KhachHangRepositoryImpl;
 import Services.IKhachHangService;
+
 import java.util.List;
 
 /**
- *
  * @author PC ASUS
  */
 public class KhachHangServiceImpl implements IKhachHangService {

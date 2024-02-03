@@ -11,6 +11,7 @@ import DomainModel.PhongTro;
 import DomainModel.TaiSan;
 import Repositories.IHopDongRepository;
 import Utilities.DBConnect;
+
 import java.util.List;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -18,7 +19,6 @@ import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 /**
- *
  * @author PC ASUS
  */
 public class HopDongRepositoryImpl implements IHopDongRepository {
@@ -26,22 +26,22 @@ public class HopDongRepositoryImpl implements IHopDongRepository {
     @Override
     public List<HopDong> getAll() {
         String query = """
-                      SELECT [Id]
-                               ,[Ma]
-                               ,[TienCoc]
-                               ,[GiaPhong]
-                               ,[GiaDien]
-                               ,[GiaNuoc]
-                               ,[NgayTao]
-                               ,[NgayKetThuc]
-                               ,[ThoiGianNopTien]
-                               ,[IDPhongTro]
-                               ,[IDKhachHang]
-                           FROM [dbo].[Hop_dong]
-                       ORDER BY [Ma]
-                       """;
+                SELECT [Id]
+                         ,[Ma]
+                         ,[TienCoc]
+                         ,[GiaPhong]
+                         ,[GiaDien]
+                         ,[GiaNuoc]
+                         ,[NgayTao]
+                         ,[NgayKetThuc]
+                         ,[ThoiGianNopTien]
+                         ,[IDPhongTro]
+                         ,[IDKhachHang]
+                     FROM [dbo].[Hop_dong]
+                 ORDER BY [Ma]
+                 """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             List<HopDong> lists = new ArrayList<>();
             while (rs.next()) {
@@ -58,20 +58,20 @@ public class HopDongRepositoryImpl implements IHopDongRepository {
     @Override
     public List<PhongTro> getListPT() {
         String query = """
-                      SELECT [Id]
-                             ,[MaPhong]
-                             ,[TenPhong]
-                             ,[SoTang]
-                             ,[TrangThai]
-                             ,[MoTa]
-                             ,[IDLoaiPhong]
-                             ,[IDKhachHang]
-                         FROM [dbo].[Phong_tro]
-                       WHERE [TrangThai] = 0
-                       ORDER BY [MaPhong]
-                       """;
+                SELECT [Id]
+                       ,[MaPhong]
+                       ,[TenPhong]
+                       ,[SoTang]
+                       ,[TrangThai]
+                       ,[MoTa]
+                       ,[IDLoaiPhong]
+                       ,[IDKhachHang]
+                   FROM [dbo].[Phong_tro]
+                 WHERE [TrangThai] = 0
+                 ORDER BY [MaPhong]
+                 """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             List<PhongTro> lists = new ArrayList<>();
             while (rs.next()) {
@@ -88,21 +88,21 @@ public class HopDongRepositoryImpl implements IHopDongRepository {
     @Override
     public List<KhachHang> getListKH() {
         String query = """
-                      SELECT [Id]
-                             ,[MaKH]
-                             ,[TenKH]
-                             ,[CCCD]
-                             ,[NgaySinh]
-                             ,[Email]
-                             ,[SDT]
-                             ,[GioiTinh]
-                             ,[DiaChi]
-                         FROM [dbo].[Khach_hang]
-                       
-                       ORDER BY [MaKH]
-                       """;
+                SELECT [Id]
+                       ,[MaKH]
+                       ,[TenKH]
+                       ,[CCCD]
+                       ,[NgaySinh]
+                       ,[Email]
+                       ,[SDT]
+                       ,[GioiTinh]
+                       ,[DiaChi]
+                   FROM [dbo].[Khach_hang]
+                 
+                 ORDER BY [MaKH]
+                 """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             List<KhachHang> lists = new ArrayList<>();
             while (rs.next()) {
@@ -119,16 +119,16 @@ public class HopDongRepositoryImpl implements IHopDongRepository {
     @Override
     public List<TaiSan> getListTS() {
         String query = """
-                      SELECT [Id]
-                             ,[MaTS]
-                             ,[TenTS]
-                             ,[Gia]
-                             ,[SoLuong]
-                         FROM [dbo].[Tai_san]
-                       ORDER BY [MaTS]
-                       """;
+                SELECT [Id]
+                       ,[MaTS]
+                       ,[TenTS]
+                       ,[Gia]
+                       ,[SoLuong]
+                   FROM [dbo].[Tai_san]
+                 ORDER BY [MaTS]
+                 """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             List<TaiSan> lists = new ArrayList<>();
             while (rs.next()) {
@@ -146,28 +146,28 @@ public class HopDongRepositoryImpl implements IHopDongRepository {
     public boolean add(HopDong hd) {
         int check = 0;
         String query = """
-                       INSERT INTO [dbo].[Hop_dong]
-                                  ([Id]
-                                  ,[Ma]
-                                  ,[TienCoc]
-                                  ,[GiaPhong]
-                                  ,[GiaDien]
-                                  ,[GiaNuoc]
-                                  ,[NgayTao]
-                                  ,[NgayKetThuc]
-                                  ,[ThoiGianNopTien]
-                                  ,[IDPhongTro]
-                                  ,[IDKhachHang])
-                            VALUES
-                                  (?,?,?,?,?,?,?,?,?,?,?)
-                       
-                       UPDATE [dbo].[Phong_tro]
-                          SET [TrangThai] = 1
-                             ,[IDKhachHang] = ?
-                        WHERE [Id] = ?
-                       """;
+                INSERT INTO [dbo].[Hop_dong]
+                           ([Id]
+                           ,[Ma]
+                           ,[TienCoc]
+                           ,[GiaPhong]
+                           ,[GiaDien]
+                           ,[GiaNuoc]
+                           ,[NgayTao]
+                           ,[NgayKetThuc]
+                           ,[ThoiGianNopTien]
+                           ,[IDPhongTro]
+                           ,[IDKhachHang])
+                     VALUES
+                           (?,?,?,?,?,?,?,?,?,?,?)
+                                       
+                UPDATE [dbo].[Phong_tro]
+                   SET [TrangThai] = 1
+                      ,[IDKhachHang] = ?
+                 WHERE [Id] = ?
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, hd.getId());
             ps.setObject(2, hd.getMa());
             ps.setObject(3, hd.getTienCoc());
@@ -193,18 +193,18 @@ public class HopDongRepositoryImpl implements IHopDongRepository {
     public boolean update(HopDong hd, String idHD) {
         int check = 0;
         String query = """
-                       UPDATE [dbo].[Hop_dong]
-                          SET [Ma] = ?
-                             ,[TienCoc] = ?
-                             ,[GiaPhong] = ?
-                             ,[GiaDien] = ?
-                             ,[GiaNuoc] = ?
-                             ,[NgayKetThuc] = ?
-                        WHERE [Id] = ?
-                       
-                       """;
+                UPDATE [dbo].[Hop_dong]
+                   SET [Ma] = ?
+                      ,[TienCoc] = ?
+                      ,[GiaPhong] = ?
+                      ,[GiaDien] = ?
+                      ,[GiaNuoc] = ?
+                      ,[NgayKetThuc] = ?
+                 WHERE [Id] = ?
+                                       
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, hd.getMa());
             ps.setObject(2, hd.getTienCoc());
             ps.setObject(3, hd.getGiaPhong());
@@ -222,12 +222,12 @@ public class HopDongRepositoryImpl implements IHopDongRepository {
     @Override
     public List<String> getListMa() {
         String query = """
-                      SELECT [Ma]
-                           FROM [dbo].[Hop_dong]
-                       ORDER BY [Ma]
-                       """;
+                SELECT [Ma]
+                     FROM [dbo].[Hop_dong]
+                 ORDER BY [Ma]
+                 """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             List<String> lists = new ArrayList<>();
             while (rs.next()) {
@@ -244,13 +244,13 @@ public class HopDongRepositoryImpl implements IHopDongRepository {
     @Override
     public String getLoaiPhongByIdPhong(String id) {
         String query = """
-                      SELECT dbo.Loai_phong.Ten
-                       FROM     dbo.Loai_phong INNER JOIN
-                                         dbo.Phong_tro ON dbo.Loai_phong.Id = dbo.Phong_tro.IDLoaiPhong
-                      WHERE dbo.Phong_tro.Id = ?
-                       """;
+                SELECT dbo.Loai_phong.Ten
+                 FROM     dbo.Loai_phong INNER JOIN
+                                   dbo.Phong_tro ON dbo.Loai_phong.Id = dbo.Phong_tro.IDLoaiPhong
+                WHERE dbo.Phong_tro.Id = ?
+                 """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -266,13 +266,13 @@ public class HopDongRepositoryImpl implements IHopDongRepository {
     @Override
     public String getDienTichByIdPhong(String id) {
         String query = """
-                      SELECT dbo.Loai_phong.DienTich
-                      FROM     dbo.Loai_phong INNER JOIN
-                                         dbo.Phong_tro ON dbo.Loai_phong.Id = dbo.Phong_tro.IDLoaiPhong
-                      WHERE dbo.Phong_tro.Id = ?
-                       """;
+                SELECT dbo.Loai_phong.DienTich
+                FROM     dbo.Loai_phong INNER JOIN
+                                   dbo.Phong_tro ON dbo.Loai_phong.Id = dbo.Phong_tro.IDLoaiPhong
+                WHERE dbo.Phong_tro.Id = ?
+                 """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -288,13 +288,13 @@ public class HopDongRepositoryImpl implements IHopDongRepository {
     @Override
     public String getGiaPhongByIdPhong(String id) {
         String query = """
-                      SELECT dbo.Loai_phong.GiaTien
-                      FROM     dbo.Loai_phong INNER JOIN
-                                         dbo.Phong_tro ON dbo.Loai_phong.Id = dbo.Phong_tro.IDLoaiPhong
-                      WHERE dbo.Phong_tro.Id = ?
-                       """;
+                SELECT dbo.Loai_phong.GiaTien
+                FROM     dbo.Loai_phong INNER JOIN
+                                   dbo.Phong_tro ON dbo.Loai_phong.Id = dbo.Phong_tro.IDLoaiPhong
+                WHERE dbo.Phong_tro.Id = ?
+                 """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -310,12 +310,12 @@ public class HopDongRepositoryImpl implements IHopDongRepository {
     @Override
     public String getTenKHById(String id) {
         String query = """
-                      SELECT [TenKH]
-                       FROM [dbo].[Khach_hang]
-                       WHERE [Id] = ? 
-                       """;
+                SELECT [TenKH]
+                 FROM [dbo].[Khach_hang]
+                 WHERE [Id] = ? 
+                 """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -331,12 +331,12 @@ public class HopDongRepositoryImpl implements IHopDongRepository {
     @Override
     public String getTenPTById(String id) {
         String query = """
-                      SELECT [TenPhong]
-                        FROM [dbo].[Phong_tro]
-                       WHERE [Id] = ? 
-                       """;
+                SELECT [TenPhong]
+                  FROM [dbo].[Phong_tro]
+                 WHERE [Id] = ? 
+                 """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -352,20 +352,20 @@ public class HopDongRepositoryImpl implements IHopDongRepository {
     @Override
     public KhachHang getKHById(String id) {
         String query = """
-                      SELECT [Id]
-                             ,[MaKH]
-                             ,[TenKH]
-                             ,[CCCD]
-                             ,[NgaySinh]
-                             ,[Email]
-                             ,[SDT]
-                             ,[GioiTinh]
-                             ,[DiaChi]
-                         FROM [dbo].[Khach_hang]
-                       WHERE [Id] = ?
-                       """;
+                SELECT [Id]
+                       ,[MaKH]
+                       ,[TenKH]
+                       ,[CCCD]
+                       ,[NgaySinh]
+                       ,[Email]
+                       ,[SDT]
+                       ,[GioiTinh]
+                       ,[DiaChi]
+                   FROM [dbo].[Khach_hang]
+                 WHERE [Id] = ?
+                 """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -381,19 +381,19 @@ public class HopDongRepositoryImpl implements IHopDongRepository {
     @Override
     public PhongTro getPTById(String id) {
         String query = """
-                      SELECT [Id]
-                               ,[MaPhong]
-                               ,[TenPhong]
-                               ,[SoTang]
-                               ,[TrangThai]
-                               ,[MoTa]
-                               ,[IDLoaiPhong]
-                               ,[IDKhachHang]
-                           FROM [dbo].[Phong_tro]
-                       WHERE [Id] = ?
-                       """;
+                SELECT [Id]
+                         ,[MaPhong]
+                         ,[TenPhong]
+                         ,[SoTang]
+                         ,[TrangThai]
+                         ,[MoTa]
+                         ,[IDLoaiPhong]
+                         ,[IDKhachHang]
+                     FROM [dbo].[Phong_tro]
+                 WHERE [Id] = ?
+                 """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -409,12 +409,12 @@ public class HopDongRepositoryImpl implements IHopDongRepository {
     @Override
     public String getIdPTByTenPT(String tenPT) {
         String query = """
-                     SELECT [Id]
-                       FROM [dbo].[Phong_tro]
-                       WHERE [TenPhong] = ?
-                       """;
+                SELECT [Id]
+                  FROM [dbo].[Phong_tro]
+                  WHERE [TenPhong] = ?
+                  """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, tenPT);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -430,12 +430,12 @@ public class HopDongRepositoryImpl implements IHopDongRepository {
     @Override
     public String getIdKHBySDT(String sdt) {
         String query = """
-                     SELECT [Id]
-                       FROM [dbo].[Khach_hang]
-                       WHERE [SDT] = ?
-                       """;
+                SELECT [Id]
+                  FROM [dbo].[Khach_hang]
+                  WHERE [SDT] = ?
+                  """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, sdt);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -451,15 +451,15 @@ public class HopDongRepositoryImpl implements IHopDongRepository {
     @Override
     public List<HopDong> searchByTenKH(String tenKH) {
         String query = """
-                      SELECT dbo.Hop_dong.Id, dbo.Hop_dong.Ma, dbo.Hop_dong.TienCoc, dbo.Hop_dong.GiaPhong, dbo.Hop_dong.GiaDien, dbo.Hop_dong.GiaNuoc, dbo.Hop_dong.NgayTao, dbo.Hop_dong.NgayKetThuc, dbo.Hop_dong.ThoiGianNopTien, 
-                                        dbo.Hop_dong.IDPhongTro, dbo.Hop_dong.IDKhachHang
-                      FROM     dbo.Hop_dong INNER JOIN
-                                        dbo.Khach_hang ON dbo.Hop_dong.IDKhachHang = dbo.Khach_hang.Id
-                       WHERE dbo.Khach_hang.TenKH like CONCAT('%',?,'%')
-                       ORDER BY dbo.Hop_dong.Ma
-                       """;
+                SELECT dbo.Hop_dong.Id, dbo.Hop_dong.Ma, dbo.Hop_dong.TienCoc, dbo.Hop_dong.GiaPhong, dbo.Hop_dong.GiaDien, dbo.Hop_dong.GiaNuoc, dbo.Hop_dong.NgayTao, dbo.Hop_dong.NgayKetThuc, dbo.Hop_dong.ThoiGianNopTien, 
+                                  dbo.Hop_dong.IDPhongTro, dbo.Hop_dong.IDKhachHang
+                FROM     dbo.Hop_dong INNER JOIN
+                                  dbo.Khach_hang ON dbo.Hop_dong.IDKhachHang = dbo.Khach_hang.Id
+                 WHERE dbo.Khach_hang.TenKH like CONCAT('%',?,'%')
+                 ORDER BY dbo.Hop_dong.Ma
+                 """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, tenKH);
             ResultSet rs = ps.executeQuery();
             List<HopDong> lists = new ArrayList<>();
@@ -477,23 +477,23 @@ public class HopDongRepositoryImpl implements IHopDongRepository {
     @Override
     public List<HopDong> searchHDConHan() {
         String query = """
-                      SELECT [Id]
-                            ,[Ma]
-                            ,[TienCoc]
-                            ,[GiaPhong]
-                            ,[GiaDien]
-                            ,[GiaNuoc]
-                            ,[NgayTao]
-                            ,[NgayKetThuc]
-                            ,[ThoiGianNopTien]
-                            ,[IDPhongTro]
-                            ,[IDKhachHang]
-                        FROM [dbo].[Hop_dong]
-                        WHERE GETDATE() < [NgayKetThuc]
-                        ORDER BY [Ma]
-                       """;
+                SELECT [Id]
+                      ,[Ma]
+                      ,[TienCoc]
+                      ,[GiaPhong]
+                      ,[GiaDien]
+                      ,[GiaNuoc]
+                      ,[NgayTao]
+                      ,[NgayKetThuc]
+                      ,[ThoiGianNopTien]
+                      ,[IDPhongTro]
+                      ,[IDKhachHang]
+                  FROM [dbo].[Hop_dong]
+                  WHERE GETDATE() < [NgayKetThuc]
+                  ORDER BY [Ma]
+                 """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             List<HopDong> lists = new ArrayList<>();
             while (rs.next()) {
@@ -510,23 +510,23 @@ public class HopDongRepositoryImpl implements IHopDongRepository {
     @Override
     public List<HopDong> searchHDHetHan() {
         String query = """
-                      SELECT [Id]
-                            ,[Ma]
-                            ,[TienCoc]
-                            ,[GiaPhong]
-                            ,[GiaDien]
-                            ,[GiaNuoc]
-                            ,[NgayTao]
-                            ,[NgayKetThuc]
-                            ,[ThoiGianNopTien]
-                            ,[IDPhongTro]
-                            ,[IDKhachHang]
-                        FROM [dbo].[Hop_dong]
-                        WHERE GETDATE() > [NgayKetThuc]
-                        ORDER BY [Ma]
-                       """;
+                SELECT [Id]
+                      ,[Ma]
+                      ,[TienCoc]
+                      ,[GiaPhong]
+                      ,[GiaDien]
+                      ,[GiaNuoc]
+                      ,[NgayTao]
+                      ,[NgayKetThuc]
+                      ,[ThoiGianNopTien]
+                      ,[IDPhongTro]
+                      ,[IDKhachHang]
+                  FROM [dbo].[Hop_dong]
+                  WHERE GETDATE() > [NgayKetThuc]
+                  ORDER BY [Ma]
+                 """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             List<HopDong> lists = new ArrayList<>();
             while (rs.next()) {
@@ -543,23 +543,23 @@ public class HopDongRepositoryImpl implements IHopDongRepository {
     @Override
     public List<HopDong> searchHDSapHetHan() {
         String query = """
-                      SELECT [Id]
-                            ,[Ma]
-                            ,[TienCoc]
-                            ,[GiaPhong]
-                            ,[GiaDien]
-                            ,[GiaNuoc]
-                            ,[NgayTao]
-                            ,[NgayKetThuc]
-                            ,[ThoiGianNopTien]
-                            ,[IDPhongTro]
-                            ,[IDKhachHang]
-                        FROM [dbo].[Hop_dong]
-                        WHERE Year([NgayKetThuc]) = YEAR(GETDATE()) and (MONTH([NgayKetThuc]) - MONTH(GETDATE())) <= 1
-                        ORDER BY [Ma]
-                       """;
+                SELECT [Id]
+                      ,[Ma]
+                      ,[TienCoc]
+                      ,[GiaPhong]
+                      ,[GiaDien]
+                      ,[GiaNuoc]
+                      ,[NgayTao]
+                      ,[NgayKetThuc]
+                      ,[ThoiGianNopTien]
+                      ,[IDPhongTro]
+                      ,[IDKhachHang]
+                  FROM [dbo].[Hop_dong]
+                  WHERE Year([NgayKetThuc]) = YEAR(GETDATE()) and (MONTH([NgayKetThuc]) - MONTH(GETDATE())) <= 1
+                  ORDER BY [Ma]
+                 """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             List<HopDong> lists = new ArrayList<>();
             while (rs.next()) {
@@ -577,20 +577,20 @@ public class HopDongRepositoryImpl implements IHopDongRepository {
     public boolean addHDTS(HopDongTaiSan hdts) {
         int check = 0;
         String query = """
-                       INSERT INTO [dbo].[Hop_dong_ts]
-                                   ([Id]
-                                   ,[IDHopDong]
-                                   ,[IdTaiSan]
-                                   ,[soLuong])
-                             VALUES
-                                   (?,?,?,?)
-                       
-                       UPDATE [dbo].[Tai_san]
-                          SET [SoLuong] = [SoLuong] - ?
-                        WHERE [Id] = ?
-                       """;
+                INSERT INTO [dbo].[Hop_dong_ts]
+                            ([Id]
+                            ,[IDHopDong]
+                            ,[IdTaiSan]
+                            ,[soLuong])
+                      VALUES
+                            (?,?,?,?)
+                                       
+                UPDATE [dbo].[Tai_san]
+                   SET [SoLuong] = [SoLuong] - ?
+                 WHERE [Id] = ?
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, hdts.getId());
             ps.setObject(2, hdts.getIdHD());
             ps.setObject(3, hdts.getIdTS());
@@ -607,15 +607,15 @@ public class HopDongRepositoryImpl implements IHopDongRepository {
     @Override
     public List<HopDongTaiSan> getListHDTSByIdHD(String idHD) {
         String query = """
-                      SELECT [Id]
-                            ,[IDHopDong]
-                            ,[IdTaiSan]
-                            ,[soLuong]
-                        FROM [dbo].[Hop_dong_ts]
-                       WHERE [IDHopDong] = ?
-                       """;
+                SELECT [Id]
+                      ,[IDHopDong]
+                      ,[IdTaiSan]
+                      ,[soLuong]
+                  FROM [dbo].[Hop_dong_ts]
+                 WHERE [IDHopDong] = ?
+                 """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, idHD);
             ResultSet rs = ps.executeQuery();
             List<HopDongTaiSan> lists = new ArrayList<>();
@@ -633,12 +633,12 @@ public class HopDongRepositoryImpl implements IHopDongRepository {
     @Override
     public String getTSByIdTS(String idTS) {
         String query = """
-                     SELECT [TenTS]
-                       FROM [dbo].[Tai_san]
-                       WHERE [Id] = ?
-                       """;
+                SELECT [TenTS]
+                  FROM [dbo].[Tai_san]
+                  WHERE [Id] = ?
+                  """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, idTS);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -655,21 +655,21 @@ public class HopDongRepositoryImpl implements IHopDongRepository {
     public boolean addKH(KhachHang kh) {
         int check = 0;
         String query = """
-                       INSERT INTO [dbo].[Khach_hang]
-                                  ([Id]
-                                  ,[MaKH]
-                                  ,[TenKH]
-                                  ,[CCCD]
-                                  ,[NgaySinh]
-                                  ,[Email]
-                                  ,[SDT]
-                                  ,[GioiTinh]
-                                  ,[DiaChi])
-                            VALUES
-                                  (?,?,?,?,?,?,?,?,?)
-                       """;
+                INSERT INTO [dbo].[Khach_hang]
+                           ([Id]
+                           ,[MaKH]
+                           ,[TenKH]
+                           ,[CCCD]
+                           ,[NgaySinh]
+                           ,[Email]
+                           ,[SDT]
+                           ,[GioiTinh]
+                           ,[DiaChi])
+                     VALUES
+                           (?,?,?,?,?,?,?,?,?)
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, kh.getId());
             ps.setObject(2, kh.getMa());
             ps.setObject(3, kh.getTen());

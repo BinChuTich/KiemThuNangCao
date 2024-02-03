@@ -5,14 +5,14 @@
 package Repositories;
 
 import DomainModel.HoaDonDienNuoc;
+
 import java.util.List;
 
 /**
- *
  * @author Bânbân
  */
 public interface IHoaDonDienNuocRepository {
-   
+
     List<HoaDonDienNuoc> getAll();
 
     boolean them(HoaDonDienNuoc hddn);

@@ -6,10 +6,10 @@ package Services;
 
 import DomainModel.HoaDonDienNuoc;
 import ViewModel.HoaDonDienNuocViewModel;
+
 import java.util.List;
 
 /**
- *
  * @author Bânbân
  */
 public interface IHoaDonDienNuocService {
@@ -22,5 +22,5 @@ public interface IHoaDonDienNuocService {
 
     String xoa(String ma);
 
-    
+
 }

@@ -6,10 +6,10 @@ package Repositories;
 
 import ViewModel.HoaDonDienNuocViewModel;
 import ViewModel.PhongTroHDViewModel;
+
 import java.util.List;
 
 /**
- *
  * @author Bânbân
  */
 public interface IHoaDonDienNuocViewModelRepository {
@@ -19,6 +19,7 @@ public interface IHoaDonDienNuocViewModelRepository {
     List<HoaDonDienNuocViewModel> timTheoTen(String ma);
 
     List<PhongTroHDViewModel> danhSachPhongHD();
+
     List<HoaDonDienNuocViewModel> ListHoaDonDienNuocTT(int trangthai);
 
     List<String> danhSachPhong();

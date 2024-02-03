@@ -5,16 +5,16 @@
 package Services;
 
 import DomainModel.TaiSan;
+
 import java.util.List;
 
 /**
- *
  * @author PC ASUS
  */
 public interface ITaiSanService {
 
     List<TaiSan> getAll();
-    
+
     List<String> getListMa();
 
     String add(TaiSan ts);

@@ -9,7 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- *
  * @author Bânbân
  */
 public class XDate {
@@ -19,7 +18,7 @@ public class XDate {
     /**
      * Chuyển đổi String sang Date
      *
-     * @param date là String cần chuyển
+     * @param date    là String cần chuyển
      * @param pattern là định dạng thời gian
      * @return Date kết quả
      */
@@ -40,7 +39,7 @@ public class XDate {
     /**
      * Chuyển đổi từ Date sang String
      *
-     * @param date là Date cần chuyển đổi
+     * @param date    là Date cần chuyển đổi
      * @param pattern là định dạng thời gian
      * @return String kết quả
      */

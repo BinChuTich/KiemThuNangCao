@@ -11,13 +11,13 @@ import Views.QuanLyHopDong;
 import Views.QuanLyKhachHang;
 import Views.QuanLyPhongTro;
 import Views.QuanLyTaiSan;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
 /**
- *
  * @author truon
  */
 public class ManHinhChinh extends javax.swing.JFrame {
@@ -28,46 +28,46 @@ public class ManHinhChinh extends javax.swing.JFrame {
     private QuanLyTaiSan ts;
     private QuanLyHoaDonDienNuoc hddn;
 //    private FormHome home = new FormHome();
-    
+
     public ManHinhChinh() {
         initComponents();
 //        setBackground(new Color(0, 0, 0, 0)); 
 //        setForm(home);
-        
+
         menu.initMoving(ManHinhChinh.this);
         menu.addEventMenuSelected(new EventMenuSelected() {
             @Override
             public void selected(int index) {
-                if(index == 1) {
+                if (index == 1) {
                     pt = new QuanLyPhongTro();
                     setForm(pt.getRootPane());
-                }else if(index == 3) {
+                } else if (index == 3) {
                     hd = new QuanLyHopDong();
                     setForm(hd.getRootPane());
-                }else if(index == 5) {
+                } else if (index == 5) {
                     kh = new QuanLyKhachHang();
                     setForm(kh.getRootPane());
-                }else if(index == 7) {
+                } else if (index == 7) {
                     hddn = new QuanLyHoaDonDienNuoc();
                     setForm(hddn.getRootPane());
-                }else if(index == 9){
+                } else if (index == 9) {
                     hdp = new QuanLyHoaDonPhong();
                     setForm(hdp.getRootPane());
-                }else if(index == 11) {
+                } else if (index == 11) {
                     ts = new QuanLyTaiSan();
                     setForm(ts.getRootPane());
-                }else if(index == 13) {
-                    
-                }else if(index == 15){
+                } else if (index == 13) {
+
+                } else if (index == 15) {
                     int confirm = JOptionPane.showConfirmDialog(rootPane, "Bạn có muốn thoát không ?");
-                    if(confirm == JOptionPane.YES_OPTION) {
+                    if (confirm == JOptionPane.YES_OPTION) {
                         System.exit(0);
                     }
                 }
             }
         });
     }
-    
+
     private void setForm(JComponent com) {
         mainPanel.removeAll();
         mainPanel.add(com);
@@ -89,7 +89,6 @@ public class ManHinhChinh extends javax.swing.JFrame {
         panelBorder1 = new Application.PanelBorder();
         menu = new Application.Menu();
         mainPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,49 +97,42 @@ public class ManHinhChinh extends javax.swing.JFrame {
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+                mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 870, Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+                mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 635, Short.MAX_VALUE)
         );
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/home.jpg"))); // NOI18N
-        jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout panelBorder1Layout = new javax.swing.GroupLayout(panelBorder1);
         panelBorder1.setLayout(panelBorder1Layout);
         panelBorder1Layout.setHorizontalGroup(
-            panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBorder1Layout.createSequentialGroup()
-                .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 882, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelBorder1Layout.createSequentialGroup()
+                                .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
         );
         panelBorder1Layout.setVerticalGroup(
-            panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(panelBorder1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBorder1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(panelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(panelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -154,7 +146,7 @@ public class ManHinhChinh extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -183,7 +175,6 @@ public class ManHinhChinh extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel mainPanel;
     private Application.Menu menu;
     private Application.PanelBorder panelBorder1;

@@ -12,7 +12,6 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
 /**
- *
  * @author truon
  */
 public class MenuItem extends javax.swing.JPanel {
@@ -43,6 +42,7 @@ public class MenuItem extends javax.swing.JPanel {
         this.selected = selected;
         repaint();
     }
+
     public void setOver(boolean over) {
         this.over = over;
         repaint();
@@ -68,18 +68,18 @@ public class MenuItem extends javax.swing.JPanel {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(lbIcon)
-                .addGap(18, 18, 18)
-                .addComponent(lbName)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(lbIcon)
+                                .addGap(18, 18, 18)
+                                .addComponent(lbName)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lbName, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lbIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbName, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -88,9 +88,9 @@ public class MenuItem extends javax.swing.JPanel {
         if (selected || over) {
             Graphics2D g2 = (Graphics2D) g;
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            if(selected) {
+            if (selected) {
                 g2.setColor(new Color(255, 255, 255, 80));
-            }else {
+            } else {
                 g2.setColor(new Color(255, 255, 255, 20));
             }
             g2.fillRoundRect(10, 0, getWidth() - 20, getHeight(), 5, 5);

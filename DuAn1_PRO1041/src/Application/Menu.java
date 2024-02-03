@@ -15,25 +15,24 @@ import java.awt.event.MouseMotionAdapter;
 import javax.swing.JFrame;
 
 /**
- *
  * @author truon
  */
 public class Menu extends javax.swing.JPanel {
-    
+
     private EventMenuSelected event;
-    
+
     public void addEventMenuSelected(EventMenuSelected event) {
         this.event = event;
         listMenu1.addEventMenuSelected(event);
     }
-    
+
     public Menu() {
         initComponents();
         setOpaque(false);
         listMenu1.setOpaque(false);
         init();
     }
-    
+
     private void init() {
         listMenu1.addItem(new ModelMenu(" ", " ", ModelMenu.MenuType.EMPTY));
         listMenu1.addItem(new ModelMenu("1", "Phòng trọ", ModelMenu.MenuType.MENU));
@@ -55,23 +54,23 @@ public class Menu extends javax.swing.JPanel {
         listMenu1.addItem(new ModelMenu("7", "Thoát", ModelMenu.MenuType.MENU));
 
     }
-    
-    
+
+
     @Override
     protected void paintChildren(Graphics g) {
-        Graphics2D g2 = (Graphics2D)g;
+        Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         GradientPaint gp = new GradientPaint(0, 0, Color.decode("#6A82FB"), 0, getHeight(), Color.decode("#FC5C7D"));
         g2.setPaint(gp);
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), 15, 15);
         g2.fillRect(getWidth() - 20, 0, getWidth(), getHeight());
-        
+
         super.paintChildren(g);
     }
 
     private int x;
     private int y;
-    
+
     public void initMoving(JFrame frame) {
         panelMoving.addMouseListener(new MouseAdapter() {
             @Override
@@ -87,6 +86,7 @@ public class Menu extends javax.swing.JPanel {
             }
         });
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -112,30 +112,30 @@ public class Menu extends javax.swing.JPanel {
         javax.swing.GroupLayout panelMovingLayout = new javax.swing.GroupLayout(panelMoving);
         panelMoving.setLayout(panelMovingLayout);
         panelMovingLayout.setHorizontalGroup(
-            panelMovingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                panelMovingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
         );
         panelMovingLayout.setVerticalGroup(
-            panelMovingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelMovingLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                panelMovingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelMovingLayout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(jLabel2)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelMoving, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(listMenu1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(panelMoving, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(listMenu1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelMoving, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(listMenu1, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addComponent(panelMoving, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(listMenu1, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

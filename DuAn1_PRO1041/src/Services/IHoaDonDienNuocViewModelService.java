@@ -6,10 +6,10 @@ package Services;
 
 import ViewModel.HoaDonDienNuocViewModel;
 import ViewModel.PhongTroHDViewModel;
+
 import java.util.List;
 
 /**
- *
  * @author Bânbân
  */
 public interface IHoaDonDienNuocViewModelService {

@@ -7,7 +7,6 @@ package DomainModel;
 import java.util.Date;
 
 /**
- *
  * @author Bânbân
  */
 public class HoaDonDienNuoc {

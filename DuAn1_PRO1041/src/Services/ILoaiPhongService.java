@@ -5,10 +5,10 @@
 package Services;
 
 import DomainModel.LoaiPhong;
+
 import java.util.List;
 
 /**
- *
  * @author PC ASUS
  */
 public interface ILoaiPhongService {

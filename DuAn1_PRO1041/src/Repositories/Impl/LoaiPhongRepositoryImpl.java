@@ -7,6 +7,7 @@ package Repositories.Impl;
 import DomainModel.LoaiPhong;
 import Repositories.ILoaiPhongRepository;
 import Utilities.DBConnect;
+
 import java.util.List;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -14,7 +15,6 @@ import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 /**
- *
  * @author PC ASUS
  */
 public class LoaiPhongRepositoryImpl implements ILoaiPhongRepository {
@@ -22,16 +22,16 @@ public class LoaiPhongRepositoryImpl implements ILoaiPhongRepository {
     @Override
     public List<LoaiPhong> getAll() {
         String query = """
-                       SELECT [Id]
-                             ,[Ma]
-                             ,[Ten]
-                             ,[DienTich]
-                             ,[GiaTien]
-                         FROM [dbo].[Loai_phong]
-                         ORDER BY [Ma]
-                       """;
+                SELECT [Id]
+                      ,[Ma]
+                      ,[Ten]
+                      ,[DienTich]
+                      ,[GiaTien]
+                  FROM [dbo].[Loai_phong]
+                  ORDER BY [Ma]
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             List<LoaiPhong> lists = new ArrayList<>();
             while (rs.next()) {
@@ -48,11 +48,11 @@ public class LoaiPhongRepositoryImpl implements ILoaiPhongRepository {
     @Override
     public List<String> getListMa() {
         String query = """
-                       SELECT [Ma]
-                         FROM [dbo].[Loai_phong]
-                       """;
+                SELECT [Ma]
+                  FROM [dbo].[Loai_phong]
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             List<String> lists = new ArrayList<>();
             while (rs.next()) {
@@ -69,11 +69,11 @@ public class LoaiPhongRepositoryImpl implements ILoaiPhongRepository {
     @Override
     public List<String> getListTen() {
         String query = """
-                       SELECT [Ten]
-                         FROM [dbo].[Loai_phong]
-                       """;
+                SELECT [Ten]
+                  FROM [dbo].[Loai_phong]
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             List<String> lists = new ArrayList<>();
             while (rs.next()) {
@@ -91,17 +91,17 @@ public class LoaiPhongRepositoryImpl implements ILoaiPhongRepository {
     public boolean add(LoaiPhong lp) {
         int check = 0;
         String query = """
-                       INSERT INTO [dbo].[Loai_phong]
-                                  ([Id]
-                                  ,[Ma]
-                                  ,[Ten]
-                                  ,[DienTich]
-                                  ,[GiaTien])
-                            VALUES
-                                  (?,?,?,?,?)
-                       """;
+                INSERT INTO [dbo].[Loai_phong]
+                           ([Id]
+                           ,[Ma]
+                           ,[Ten]
+                           ,[DienTich]
+                           ,[GiaTien])
+                     VALUES
+                           (?,?,?,?,?)
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, lp.getId());
             ps.setObject(2, lp.getMa());
             ps.setObject(3, lp.getTen());
@@ -118,15 +118,15 @@ public class LoaiPhongRepositoryImpl implements ILoaiPhongRepository {
     public boolean update(LoaiPhong lp, String id) {
         int check = 0;
         String query = """
-                       UPDATE [dbo].[Loai_phong]
-                          SET [Ma] = ?
-                             ,[Ten] = ?
-                             ,[DienTich] = ?
-                             ,[GiaTien] = ?
-                        WHERE [Id] = ?
-                       """;
+                UPDATE [dbo].[Loai_phong]
+                   SET [Ma] = ?
+                      ,[Ten] = ?
+                      ,[DienTich] = ?
+                      ,[GiaTien] = ?
+                 WHERE [Id] = ?
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, lp.getMa());
             ps.setObject(2, lp.getTen());
             ps.setObject(3, lp.getDienTich());
@@ -143,11 +143,11 @@ public class LoaiPhongRepositoryImpl implements ILoaiPhongRepository {
     public boolean delete(String id) {
         int check = 0;
         String query = """
-                       DELETE FROM [dbo].[Loai_phong]
-                             WHERE [Id] = ?
-                       """;
+                DELETE FROM [dbo].[Loai_phong]
+                      WHERE [Id] = ?
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, id);
             check = ps.executeUpdate();
         } catch (Exception e) {
@@ -159,17 +159,17 @@ public class LoaiPhongRepositoryImpl implements ILoaiPhongRepository {
     @Override
     public List<LoaiPhong> TimKiem(String tenLP) {
         String query = """
-                       SELECT [Id]
-                            ,[Ma]
-                            ,[Ten]
-                            ,[DienTich]
-                            ,[GiaTien]
-                         FROM [dbo].[Loai_phong]
-                         WHERE [Ten] like CONCAT('%',?,'%')
-                         ORDER BY [Ten]
-                       """;
+                SELECT [Id]
+                     ,[Ma]
+                     ,[Ten]
+                     ,[DienTich]
+                     ,[GiaTien]
+                  FROM [dbo].[Loai_phong]
+                  WHERE [Ten] like CONCAT('%',?,'%')
+                  ORDER BY [Ten]
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, tenLP);
             ResultSet rs = ps.executeQuery();
             List<LoaiPhong> lists = new ArrayList<>();

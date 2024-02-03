@@ -5,10 +5,10 @@
 package Services;
 
 import DomainModel.HoaDonPhong;
+
 import java.util.List;
 
 /**
- *
  * @author PC ASUS
  */
 public interface IHoaDonPhongService {
@@ -36,7 +36,7 @@ public interface IHoaDonPhongService {
     String getIDByKH(String tenKH);
 
     String getIDByPhong(String tenPhong);
-    
+
     String getIDHDByPhong(String tenPhong);
 
     Double getGiaByPhong(String tenPhong);

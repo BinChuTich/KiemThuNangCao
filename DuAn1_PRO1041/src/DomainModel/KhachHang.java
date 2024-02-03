@@ -5,12 +5,13 @@
 package DomainModel;
 
 import java.util.Date;
+
 import Utilities.Support;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 /**
- *
  * @author PC ASUS
  */
 public class KhachHang {

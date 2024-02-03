@@ -60,6 +60,7 @@ create table Hoadon_dien_nuoc(
 	SoDien int,
 	SoNuoc int,
 	TongTien float,
+	TienThieu float,
 	NgayTao Date,
 	TrangThai bit,
 	IDPhongTro UNIQUEIDENTIFIER,
@@ -115,7 +116,7 @@ ALTER TABLE Hoadon_phong ADD FOREIGN KEY (IDKhachHang) REFERENCES Khach_hang(Id)
 ALTER TABLE Hoadon_phong ADD FOREIGN KEY (IDHopDong) REFERENCES Hop_dong(Id)
 --Hoa don dien nuoc - Phong tro
 ALTER TABLE Hoadon_dien_nuoc ADD FOREIGN KEY (IDPhongTro) REFERENCES Phong_tro(Id) 
---Hoa don dien nuoc  - Khach hang
+--Hoa don dien nuoc  - Khach hang 
 ALTER TABLE Hoadon_dien_nuoc ADD FOREIGN KEY (IDKhachHang) REFERENCES Khach_hang(Id) 
 --Hoa don dien nuoc - Hop dong
 ALTER TABLE Hoadon_dien_nuoc ADD FOREIGN KEY (IDHopDong) REFERENCES Hop_dong(Id) 

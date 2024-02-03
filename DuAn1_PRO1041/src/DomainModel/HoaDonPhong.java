@@ -5,11 +5,12 @@
 package DomainModel;
 
 import Repositories.Impl.HoaDonPhongRepositoryImpl;
+
 import java.util.Date;
+
 import Utilities.Support;
 
 /**
- *
  * @author PC ASUS
  */
 public class HoaDonPhong {
@@ -39,7 +40,7 @@ public class HoaDonPhong {
         this.idPT = idPT;
         this.idKH = idKH;
     }
-    
+
     public HoaDonPhong(String id, String ma, Date ngTao, double tongTien, boolean trangThai, String idPT, String idKH, String idHD) {
         this.id = id;
         this.ma = ma;
@@ -61,10 +62,6 @@ public class HoaDonPhong {
         this.idPT = idPT;
         this.idKH = idKH;
         this.idHD = idHD;
-    }
-
-    public HoaDonPhong(String phong101) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public HoaDonPhongRepositoryImpl getHdpri() {

@@ -7,6 +7,7 @@ package Repositories.Impl;
 import DomainModel.HoaDonDienNuoc;
 import Repositories.IHoaDonDienNuocRepository;
 import Utilities.DBConnect;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author Bânbân
  */
 public class HoaDonDienNuocRepositoryImpl implements IHoaDonDienNuocRepository {
@@ -23,22 +23,22 @@ public class HoaDonDienNuocRepositoryImpl implements IHoaDonDienNuocRepository {
     public boolean them(HoaDonDienNuoc hddn) {
         int check = 0;
         String query = """
-                       INSERT INTO [dbo].[Hoadon_dien_nuoc]
-                                             ([Id]
-                                             ,[Ma]
-                                             ,[SoDien]
-                                             ,[SoNuoc]
-                                             ,[TongTien]
-                                             ,[TienThieu]
-                                             ,[NgayTao]
-                                             ,[TrangThai]
-                                             ,[IDPhongTro]
-                                             ,[IDKhachHang]
-                                             ,[IDHopDong])
-                                       VALUES
-                                             (?,?,?,?,?,?,?,?,?,?,?)
-                       """;
-        try ( Connection con = DBConnect.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
+                INSERT INTO [dbo].[Hoadon_dien_nuoc]
+                                      ([Id]
+                                      ,[Ma]
+                                      ,[SoDien]
+                                      ,[SoNuoc]
+                                      ,[TongTien]
+                                      ,[TienThieu]
+                                      ,[NgayTao]
+                                      ,[TrangThai]
+                                      ,[IDPhongTro]
+                                      ,[IDKhachHang]
+                                      ,[IDHopDong])
+                                VALUES
+                                      (?,?,?,?,?,?,?,?,?,?,?)
+                """;
+        try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, hddn.getId());
             ps.setObject(2, hddn.getMa());
             ps.setObject(3, hddn.getSoDien());
@@ -61,19 +61,19 @@ public class HoaDonDienNuocRepositoryImpl implements IHoaDonDienNuocRepository {
     public boolean sua(String ma, HoaDonDienNuoc hddn) {
         int check = 0;
         String query = """
-                       UPDATE [dbo].[Hoadon_dien_nuoc]
-                           SET [SoDien] = ?
-                              ,[SoNuoc] = ?
-                              ,[TongTien] = ?
-                              ,[TienThieu] = ?
-                              ,[NgayTao] = ?
-                              ,[TrangThai] = ?
-                              ,[IDPhongTro] = ?
-                              ,[IDKhachHang] = ?
-                              ,[IDHopDong] = ?
-                         WHERE Ma = ?
-                       """;
-        try ( Connection con = DBConnect.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
+                UPDATE [dbo].[Hoadon_dien_nuoc]
+                    SET [SoDien] = ?
+                       ,[SoNuoc] = ?
+                       ,[TongTien] = ?
+                       ,[TienThieu] = ?
+                       ,[NgayTao] = ?
+                       ,[TrangThai] = ?
+                       ,[IDPhongTro] = ?
+                       ,[IDKhachHang] = ?
+                       ,[IDHopDong] = ?
+                  WHERE Ma = ?
+                """;
+        try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, hddn.getSoDien());
             ps.setObject(2, hddn.getSoNuoc());
             ps.setObject(3, hddn.getTongTien());
@@ -95,10 +95,10 @@ public class HoaDonDienNuocRepositoryImpl implements IHoaDonDienNuocRepository {
     public boolean xoa(String ma) {
         int check = 0;
         String query = """
-                       DELETE FROM [dbo].[Hoadon_dien_nuoc]
-                              WHERE Ma = ?
-                       """;
-        try ( Connection con = DBConnect.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
+                DELETE FROM [dbo].[Hoadon_dien_nuoc]
+                       WHERE Ma = ?
+                """;
+        try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, ma);
 
             check = ps.executeUpdate();
@@ -111,20 +111,20 @@ public class HoaDonDienNuocRepositoryImpl implements IHoaDonDienNuocRepository {
     @Override
     public List<HoaDonDienNuoc> getAll() {
         String query = """
-                       SELECT [Id]
-                               ,[Ma]
-                               ,[SoDien]
-                               ,[SoNuoc]
-                               ,[TongTien]
-                               ,[TienThieu]
-                               ,[NgayTao]
-                               ,[TrangThai]
-                               ,[IDPhongTro]
-                               ,[IDKhachHang]
-                               ,[IDHopDong]
-                           FROM [dbo].[Hoadon_dien_nuoc]
-                       """;
-        try ( Connection con = DBConnect.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
+                SELECT [Id]
+                        ,[Ma]
+                        ,[SoDien]
+                        ,[SoNuoc]
+                        ,[TongTien]
+                        ,[TienThieu]
+                        ,[NgayTao]
+                        ,[TrangThai]
+                        ,[IDPhongTro]
+                        ,[IDKhachHang]
+                        ,[IDHopDong]
+                    FROM [dbo].[Hoadon_dien_nuoc]
+                """;
+        try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             List<HoaDonDienNuoc> list = new ArrayList<>();
             while (rs.next()) {

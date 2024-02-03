@@ -7,31 +7,34 @@ package Repositories.Impl;
 import DomainModel.PhongTro;
 import Repositories.IPhongTroRepository;
 import Utilities.DBConnect;
+
 import java.util.List;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
-
+/**
+ * @author PC ASUS
+ */
 public class PhongTroRepositoryImpl implements IPhongTroRepository {
 
     @Override
     public List<PhongTro> getAll() {
         String query = """
-                       SELECT [Id]
-                               ,[MaPhong]
-                               ,[TenPhong]
-                               ,[SoTang]
-                               ,[TrangThai]
-                               ,[MoTa]
-                               ,[IDLoaiPhong]
-                               ,[IDKhachHang]
-                           FROM [dbo].[Phong_tro]
-                         ORDER BY [MaPhong]
-                       """;
+                SELECT [Id]
+                        ,[MaPhong]
+                        ,[TenPhong]
+                        ,[SoTang]
+                        ,[TrangThai]
+                        ,[MoTa]
+                        ,[IDLoaiPhong]
+                        ,[IDKhachHang]
+                    FROM [dbo].[Phong_tro]
+                  ORDER BY [MaPhong]
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             List<PhongTro> lists = new ArrayList<>();
             while (rs.next()) {
@@ -48,12 +51,12 @@ public class PhongTroRepositoryImpl implements IPhongTroRepository {
     @Override
     public List<String> getListMa() {
         String query = """
-                       SELECT [MaPhong]
-                         FROM [dbo].[Phong_tro]
-                       ORDER BY [MaPhong]
-                       """;
+                SELECT [MaPhong]
+                  FROM [dbo].[Phong_tro]
+                ORDER BY [MaPhong]
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             List<String> lists = new ArrayList<>();
             while (rs.next()) {
@@ -70,12 +73,12 @@ public class PhongTroRepositoryImpl implements IPhongTroRepository {
     @Override
     public List<String> getListTen() {
         String query = """
-                       SELECT [TenPhong]
-                         FROM [dbo].[Phong_tro]
-                       ORDER BY [TenPhong]
-                       """;
+                SELECT [TenPhong]
+                  FROM [dbo].[Phong_tro]
+                ORDER BY [TenPhong]
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             List<String> lists = new ArrayList<>();
             while (rs.next()) {
@@ -92,12 +95,12 @@ public class PhongTroRepositoryImpl implements IPhongTroRepository {
     @Override
     public List<String> getListTTLoaiPhong() {
         String query = """
-                      SELECT [Ten] + ' ' + '(' + cast([DienTich] as varchar) + 'm2' + ')' + ' ' + '(' + [Ma] + ')'
-                        FROM [dbo].[Loai_phong]
-                       ORDER BY [MA]
-                      """;
+                SELECT [Ten] + ' ' + '(' + cast([DienTich] as varchar) + 'm2' + ')' + ' ' + '(' + [Ma] + ')'
+                  FROM [dbo].[Loai_phong]
+                 ORDER BY [MA]
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             List<String> lists = new ArrayList<>();
             while (rs.next()) {
@@ -114,12 +117,12 @@ public class PhongTroRepositoryImpl implements IPhongTroRepository {
     @Override
     public String getIdByTTLoaiPhong(String ttlp) {
         String query = """
-                      SELECT [Id] 
-                        FROM [dbo].[Loai_phong]
-                      	where [Ten] + ' ' + '(' + cast([DienTich] as varchar) + 'm2' + ')' + ' ' + '(' + [Ma] + ')' = ?
-                      """;
+                SELECT [Id] 
+                  FROM [dbo].[Loai_phong]
+                	where [Ten] + ' ' + '(' + cast([DienTich] as varchar) + 'm2' + ')' + ' ' + '(' + [Ma] + ')' = ?
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, ttlp);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -135,12 +138,12 @@ public class PhongTroRepositoryImpl implements IPhongTroRepository {
     @Override
     public String getTTLoaiPhongById(String id) {
         String query = """
-                      SELECT [Ten] + ' ' + '(' + cast([DienTich] as varchar) + 'm2' + ')' + ' ' + '(' + [Ma] + ')'
-                        FROM [dbo].[Loai_phong]
-                        WHERE [Id] = ?
-                      """;
+                SELECT [Ten] + ' ' + '(' + cast([DienTich] as varchar) + 'm2' + ')' + ' ' + '(' + [Ma] + ')'
+                  FROM [dbo].[Loai_phong]
+                  WHERE [Id] = ?
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -157,19 +160,19 @@ public class PhongTroRepositoryImpl implements IPhongTroRepository {
     public boolean add(PhongTro pt) {
         int check = 0;
         String query = """
-                       INSERT INTO [dbo].[Phong_tro]
-                                  ([Id]
-                                  ,[MaPhong]
-                                  ,[TenPhong]
-                                  ,[SoTang]
-                                  ,[TrangThai]
-                                  ,[MoTa]
-                                  ,[IDLoaiPhong])
-                            VALUES
-                                  (?,?,?,?,?,?,?)
-                       """;
+                INSERT INTO [dbo].[Phong_tro]
+                           ([Id]
+                           ,[MaPhong]
+                           ,[TenPhong]
+                           ,[SoTang]
+                           ,[TrangThai]
+                           ,[MoTa]
+                           ,[IDLoaiPhong])
+                     VALUES
+                           (?,?,?,?,?,?,?)
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, pt.getId());
             ps.setObject(2, pt.getMa());
             ps.setObject(3, pt.getTen());
@@ -188,17 +191,17 @@ public class PhongTroRepositoryImpl implements IPhongTroRepository {
     public boolean update(PhongTro pt, String id) {
         int check = 0;
         String query = """
-                       UPDATE [dbo].[Phong_tro]
-                          SET [MaPhong] = ?
-                             ,[TenPhong] = ?
-                             ,[SoTang] = ?
-                             ,[TrangThai] = ?
-                             ,[MoTa] = ?
-                             ,[IDLoaiPhong] = ?
-                        WHERE [Id] = ?
-                       """;
+                UPDATE [dbo].[Phong_tro]
+                   SET [MaPhong] = ?
+                      ,[TenPhong] = ?
+                      ,[SoTang] = ?
+                      ,[TrangThai] = ?
+                      ,[MoTa] = ?
+                      ,[IDLoaiPhong] = ?
+                 WHERE [Id] = ?
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, pt.getMa());
             ps.setObject(2, pt.getTen());
             ps.setObject(3, pt.getTang());
@@ -217,11 +220,11 @@ public class PhongTroRepositoryImpl implements IPhongTroRepository {
     public boolean delete(String id) {
         int check = 0;
         String query = """
-                       DELETE FROM [dbo].[Phong_tro]
-                             WHERE [Id] = ?
-                       """;
+                DELETE FROM [dbo].[Phong_tro]
+                      WHERE [Id] = ?
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, id);
             check = ps.executeUpdate();
         } catch (Exception e) {
@@ -233,20 +236,20 @@ public class PhongTroRepositoryImpl implements IPhongTroRepository {
     @Override
     public List<PhongTro> TimKiem(String tenPhong) {
         String query = """
-                       SELECT [Id]
-                               ,[MaPhong]
-                               ,[TenPhong]
-                               ,[SoTang]
-                               ,[TrangThai]
-                               ,[MoTa]
-                               ,[IDLoaiPhong]
-                               ,[IDKhachHang]
-                           FROM [dbo].[Phong_tro]
-                         WHERE [TenPhong] like CONCAT('%',?,'%')
-                       ORDER BY [TenPhong]
-                       """;
+                SELECT [Id]
+                        ,[MaPhong]
+                        ,[TenPhong]
+                        ,[SoTang]
+                        ,[TrangThai]
+                        ,[MoTa]
+                        ,[IDLoaiPhong]
+                        ,[IDKhachHang]
+                    FROM [dbo].[Phong_tro]
+                  WHERE [TenPhong] like CONCAT('%',?,'%')
+                ORDER BY [TenPhong]
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, tenPhong);
             ResultSet rs = ps.executeQuery();
             List<PhongTro> lists = new ArrayList<>();
@@ -264,20 +267,20 @@ public class PhongTroRepositoryImpl implements IPhongTroRepository {
     @Override
     public List<PhongTro> getListDSD() {
         String query = """
-                       SELECT [Id]
-                                                      ,[MaPhong]
-                                                      ,[TenPhong]
-                                                      ,[SoTang]
-                                                      ,[TrangThai]
-                                                      ,[MoTa]
-                                                      ,[IDLoaiPhong]
-                                                      ,[IDKhachHang]
-                                                  FROM [dbo].[Phong_tro]
-                       WHERE [TrangThai] = 1
-                       ORDER BY [TenPhong]
-                       """;
+                SELECT [Id]
+                                               ,[MaPhong]
+                                               ,[TenPhong]
+                                               ,[SoTang]
+                                               ,[TrangThai]
+                                               ,[MoTa]
+                                               ,[IDLoaiPhong]
+                                               ,[IDKhachHang]
+                                           FROM [dbo].[Phong_tro]
+                WHERE [TrangThai] = 1
+                ORDER BY [TenPhong]
+                """;
         try (Connection con = DBConnect.getConnection();
-                PreparedStatement ps = con.prepareStatement(query)) {
+             PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             List<PhongTro> lists = new ArrayList<>();
             while (rs.next()) {

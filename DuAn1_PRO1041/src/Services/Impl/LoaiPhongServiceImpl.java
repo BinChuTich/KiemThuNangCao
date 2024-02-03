@@ -7,10 +7,10 @@ package Services.Impl;
 import DomainModel.LoaiPhong;
 import Repositories.Impl.LoaiPhongRepositoryImpl;
 import Services.ILoaiPhongService;
+
 import java.util.List;
 
 /**
- *
  * @author PC ASUS
  */
 public class LoaiPhongServiceImpl implements ILoaiPhongService {

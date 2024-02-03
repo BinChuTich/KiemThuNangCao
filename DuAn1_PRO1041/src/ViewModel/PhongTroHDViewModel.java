@@ -5,7 +5,6 @@
 package ViewModel;
 
 /**
- *
  * @author Bânbân
  */
 public class PhongTroHDViewModel {

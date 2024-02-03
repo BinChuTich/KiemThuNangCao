@@ -5,15 +5,15 @@
 package Repositories;
 
 import DomainModel.DichVu;
+
 import java.util.List;
 
 /**
- *
  * @author PC ASUS
  */
 public interface IDichVuRepository {
     List<DichVu> getAll();
-    
+
     List<String> getListMa();
 
     boolean add(DichVu dv);

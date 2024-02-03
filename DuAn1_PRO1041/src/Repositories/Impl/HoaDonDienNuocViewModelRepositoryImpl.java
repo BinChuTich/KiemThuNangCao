@@ -6,17 +6,19 @@ package Repositories.Impl;
 
 import Utilities.DBConnect;
 import ViewModel.HoaDonDienNuocViewModel;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
 import Repositories.IHoaDonDienNuocViewModelRepository;
 import ViewModel.PhongTroHDViewModel;
+
 import java.util.UUID;
 
 /**
- *
  * @author Bânbân
  */
 public class HoaDonDienNuocViewModelRepositoryImpl implements IHoaDonDienNuocViewModelRepository {
@@ -24,14 +26,14 @@ public class HoaDonDienNuocViewModelRepositoryImpl implements IHoaDonDienNuocVie
     @Override
     public List<HoaDonDienNuocViewModel> danhSachHoaDonDienNuoc() {
         String query = """
-                       SELECT Hoadon_dien_nuoc.Ma, Phong_tro.TenPhong, Khach_hang.TenKH, Hoadon_dien_nuoc.NgayTao, Hoadon_dien_nuoc.SoDien, Hoadon_dien_nuoc.SoNuoc, Hop_dong.GiaDien, Hop_dong.GiaNuoc, Hoadon_dien_nuoc.TongTien,Hoadon_dien_nuoc.TienThieu, 
-                                         Hoadon_dien_nuoc.TrangThai
-                       FROM     Hoadon_dien_nuoc INNER JOIN
-                                         Hop_dong ON Hoadon_dien_nuoc.IDHopDong = Hop_dong.Id INNER JOIN
-                                         Khach_hang ON Hoadon_dien_nuoc.IDKhachHang = Khach_hang.Id AND Hop_dong.IDKhachHang = Khach_hang.Id INNER JOIN
-                                         Phong_tro ON Hoadon_dien_nuoc.IDPhongTro = Phong_tro.Id AND Hop_dong.IDPhongTro = Phong_tro.Id AND Khach_hang.Id = Phong_tro.IDKhachHang
-                       """;
-        try ( Connection con = DBConnect.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
+                SELECT Hoadon_dien_nuoc.Ma, Phong_tro.TenPhong, Khach_hang.TenKH, Hoadon_dien_nuoc.NgayTao, Hoadon_dien_nuoc.SoDien, Hoadon_dien_nuoc.SoNuoc, Hop_dong.GiaDien, Hop_dong.GiaNuoc, Hoadon_dien_nuoc.TongTien,Hoadon_dien_nuoc.TienThieu, 
+                                  Hoadon_dien_nuoc.TrangThai
+                FROM     Hoadon_dien_nuoc INNER JOIN
+                                  Hop_dong ON Hoadon_dien_nuoc.IDHopDong = Hop_dong.Id INNER JOIN
+                                  Khach_hang ON Hoadon_dien_nuoc.IDKhachHang = Khach_hang.Id AND Hop_dong.IDKhachHang = Khach_hang.Id INNER JOIN
+                                  Phong_tro ON Hoadon_dien_nuoc.IDPhongTro = Phong_tro.Id AND Hop_dong.IDPhongTro = Phong_tro.Id AND Khach_hang.Id = Phong_tro.IDKhachHang
+                """;
+        try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             List<HoaDonDienNuocViewModel> list = new ArrayList<>();
             int stt = 1;
@@ -50,15 +52,15 @@ public class HoaDonDienNuocViewModelRepositoryImpl implements IHoaDonDienNuocVie
     @Override
     public List<HoaDonDienNuocViewModel> timTheoTen(String ma) {
         String query = """
-                       SELECT Hoadon_dien_nuoc.Ma, Phong_tro.TenPhong, Khach_hang.TenKH, Hoadon_dien_nuoc.NgayTao, Hoadon_dien_nuoc.SoDien, Hoadon_dien_nuoc.SoNuoc, Hop_dong.GiaDien, Hop_dong.GiaNuoc, Hoadon_dien_nuoc.TongTien,Hoadon_dien_nuoc.TienThieu, 
-                                                                Hoadon_dien_nuoc.TrangThai
-                                              FROM     Hoadon_dien_nuoc INNER JOIN
-                                                                Hop_dong ON Hoadon_dien_nuoc.IDHopDong = Hop_dong.Id INNER JOIN
-                                                                Khach_hang ON Hoadon_dien_nuoc.IDKhachHang = Khach_hang.Id AND Hop_dong.IDKhachHang = Khach_hang.Id INNER JOIN
-                                                                Phong_tro ON Hoadon_dien_nuoc.IDPhongTro = Phong_tro.Id AND Hop_dong.IDPhongTro = Phong_tro.Id AND Khach_hang.Id = Phong_tro.IDKhachHang
-                       Where Phong_tro.TenPhong like concat ('%',?,'%')
-                       """;
-        try ( Connection con = DBConnect.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
+                SELECT Hoadon_dien_nuoc.Ma, Phong_tro.TenPhong, Khach_hang.TenKH, Hoadon_dien_nuoc.NgayTao, Hoadon_dien_nuoc.SoDien, Hoadon_dien_nuoc.SoNuoc, Hop_dong.GiaDien, Hop_dong.GiaNuoc, Hoadon_dien_nuoc.TongTien,Hoadon_dien_nuoc.TienThieu, 
+                                                         Hoadon_dien_nuoc.TrangThai
+                                       FROM     Hoadon_dien_nuoc INNER JOIN
+                                                         Hop_dong ON Hoadon_dien_nuoc.IDHopDong = Hop_dong.Id INNER JOIN
+                                                         Khach_hang ON Hoadon_dien_nuoc.IDKhachHang = Khach_hang.Id AND Hop_dong.IDKhachHang = Khach_hang.Id INNER JOIN
+                                                         Phong_tro ON Hoadon_dien_nuoc.IDPhongTro = Phong_tro.Id AND Hop_dong.IDPhongTro = Phong_tro.Id AND Khach_hang.Id = Phong_tro.IDKhachHang
+                Where Phong_tro.TenPhong like concat ('%',?,'%')
+                """;
+        try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, ma);
             ResultSet rs = ps.executeQuery();
             List<HoaDonDienNuocViewModel> list = new ArrayList<>();
@@ -78,11 +80,11 @@ public class HoaDonDienNuocViewModelRepositoryImpl implements IHoaDonDienNuocVie
     @Override
     public List<String> danhSachPhong() {
         String query = """
-                       SELECT [TenPhong]
-                         FROM [dbo].[Phong_tro]
-                       Order By [MaPhong] asc
-                       """;
-        try ( Connection con = DBConnect.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
+                SELECT [TenPhong]
+                  FROM [dbo].[Phong_tro]
+                Order By [MaPhong] asc
+                """;
+        try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             List<String> lists = new ArrayList<>();
             while (rs.next()) {
@@ -99,11 +101,11 @@ public class HoaDonDienNuocViewModelRepositoryImpl implements IHoaDonDienNuocVie
     @Override
     public String getIDByPhong(String ten) {
         String query = """
-                       SELECT [Id]
-                         FROM [dbo].[Phong_tro]
-                       Where [TenPhong] = ?
-                       """;
-        try ( Connection con = DBConnect.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
+                SELECT [Id]
+                  FROM [dbo].[Phong_tro]
+                Where [TenPhong] = ?
+                """;
+        try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, ten);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -119,11 +121,11 @@ public class HoaDonDienNuocViewModelRepositoryImpl implements IHoaDonDienNuocVie
     @Override
     public String getPhongByID(String id) {
         String query = """
-                       SELECT [TenPhong]
-                         FROM [dbo].[Phong_tro]
-                       Where [Id] = ?
-                       """;
-        try ( Connection con = DBConnect.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
+                SELECT [TenPhong]
+                  FROM [dbo].[Phong_tro]
+                Where [Id] = ?
+                """;
+        try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -139,11 +141,11 @@ public class HoaDonDienNuocViewModelRepositoryImpl implements IHoaDonDienNuocVie
     @Override
     public List<String> danhSachKhachHang() {
         String query = """
-                       SELECT [TenKH]
-                         FROM [dbo].[Khach_hang]
-                       Order By [MaKH] asc
-                       """;
-        try ( Connection con = DBConnect.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
+                SELECT [TenKH]
+                  FROM [dbo].[Khach_hang]
+                Order By [MaKH] asc
+                """;
+        try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             List<String> lists = new ArrayList<>();
             while (rs.next()) {
@@ -160,11 +162,11 @@ public class HoaDonDienNuocViewModelRepositoryImpl implements IHoaDonDienNuocVie
     @Override
     public String getIDByKH(String ten) {
         String query = """
-                       SELECT [Id]
-                         FROM [dbo].[Khach_hang]
-                       Where [TenKH] = ?
-                       """;
-        try ( Connection con = DBConnect.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
+                SELECT [Id]
+                  FROM [dbo].[Khach_hang]
+                Where [TenKH] = ?
+                """;
+        try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, ten);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -180,11 +182,11 @@ public class HoaDonDienNuocViewModelRepositoryImpl implements IHoaDonDienNuocVie
     @Override
     public String getKHByID(String id) {
         String query = """
-                       SELECT [TenKH]
-                         FROM [dbo].[Khach_hang]
-                       Where [Id] = ?
-                       """;
-        try ( Connection con = DBConnect.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
+                SELECT [TenKH]
+                  FROM [dbo].[Khach_hang]
+                Where [Id] = ?
+                """;
+        try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
             UUID uuid = UUID.fromString(id);
             ps.setObject(1, uuid);
             ResultSet rs = ps.executeQuery();
@@ -203,12 +205,12 @@ public class HoaDonDienNuocViewModelRepositoryImpl implements IHoaDonDienNuocVie
     @Override
     public List<PhongTroHDViewModel> danhSachPhongHD() {
         String query = """
-                       SELECT Phong_tro.Id, Phong_tro.TenPhong, Khach_hang.TenKH, Phong_tro.SoTang, Phong_tro.TrangThai
-                       FROM     Khach_hang INNER JOIN
-                                         Phong_tro ON Khach_hang.Id = Phong_tro.IDKhachHang AND Khach_hang.Id = Phong_tro.IDKhachHang
-                       Where Phong_tro.TrangThai = 1
-                       """;
-        try ( Connection con = DBConnect.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
+                SELECT Phong_tro.Id, Phong_tro.TenPhong, Khach_hang.TenKH, Phong_tro.SoTang, Phong_tro.TrangThai
+                FROM     Khach_hang INNER JOIN
+                                  Phong_tro ON Khach_hang.Id = Phong_tro.IDKhachHang AND Khach_hang.Id = Phong_tro.IDKhachHang
+                Where Phong_tro.TrangThai = 1
+                """;
+        try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
 
             ResultSet rs = ps.executeQuery();
             List<PhongTroHDViewModel> list = new ArrayList<>();
@@ -226,12 +228,12 @@ public class HoaDonDienNuocViewModelRepositoryImpl implements IHoaDonDienNuocVie
     @Override
     public String getGiaDien(String ten) {
         String query = """
-                      SELECT Hop_dong.GiaDien
-                        FROM Hop_dong INNER JOIN
-                        Phong_tro ON Hop_dong.IDPhongTro = Phong_tro.Id AND Hop_dong.IDPhongTro = Phong_tro.Id
-                        Where Phong_tro.TenPhong = ?
-                      """;
-        try ( Connection con = DBConnect.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
+                SELECT Hop_dong.GiaDien
+                  FROM Hop_dong INNER JOIN
+                  Phong_tro ON Hop_dong.IDPhongTro = Phong_tro.Id AND Hop_dong.IDPhongTro = Phong_tro.Id
+                  Where Phong_tro.TenPhong = ?
+                """;
+        try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, ten);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -247,12 +249,12 @@ public class HoaDonDienNuocViewModelRepositoryImpl implements IHoaDonDienNuocVie
     @Override
     public String getGiaNuoc(String ten) {
         String query = """
-                       SELECT Hop_dong.GiaNuoc
-                         FROM Hop_dong INNER JOIN
-                              Phong_tro ON Hop_dong.IDPhongTro = Phong_tro.Id AND Hop_dong.IDPhongTro = Phong_tro.Id
-                        Where Phong_tro.TenPhong = ?
-                       """;
-        try ( Connection con = DBConnect.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
+                SELECT Hop_dong.GiaNuoc
+                  FROM Hop_dong INNER JOIN
+                       Phong_tro ON Hop_dong.IDPhongTro = Phong_tro.Id AND Hop_dong.IDPhongTro = Phong_tro.Id
+                 Where Phong_tro.TenPhong = ?
+                """;
+        try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, ten);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -268,12 +270,12 @@ public class HoaDonDienNuocViewModelRepositoryImpl implements IHoaDonDienNuocVie
     @Override
     public String getIDByHD(String ten) {
         String query = """
-                       SELECT Hop_dong.Id
-                       FROM     Hop_dong INNER JOIN
-                                         Phong_tro ON Hop_dong.IDPhongTro = Phong_tro.Id
-                       				  Where Phong_tro.TenPhong = ?
-                       """;
-        try ( Connection con = DBConnect.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
+                SELECT Hop_dong.Id
+                FROM     Hop_dong INNER JOIN
+                                  Phong_tro ON Hop_dong.IDPhongTro = Phong_tro.Id
+                				  Where Phong_tro.TenPhong = ?
+                """;
+        try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, ten);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -294,16 +296,16 @@ public class HoaDonDienNuocViewModelRepositoryImpl implements IHoaDonDienNuocVie
     @Override
     public List<HoaDonDienNuocViewModel> ListHoaDonDienNuocTT(int trangthai) {
         String query = """
-                       SELECT Hoadon_dien_nuoc.Ma, Phong_tro.TenPhong, Khach_hang.TenKH, Hoadon_dien_nuoc.NgayTao, Hoadon_dien_nuoc.SoDien, Hoadon_dien_nuoc.SoNuoc, Hop_dong.GiaDien, Hop_dong.GiaNuoc, Hoadon_dien_nuoc.TongTien,
-                       Hoadon_dien_nuoc.TienThieu, Hoadon_dien_nuoc.TrangThai
-                                FROM     Hoadon_dien_nuoc INNER JOIN
-                                    Hop_dong ON Hoadon_dien_nuoc.IDHopDong = Hop_dong.Id INNER JOIN
-                                    Khach_hang ON Hoadon_dien_nuoc.IDKhachHang = Khach_hang.Id AND Hop_dong.IDKhachHang = Khach_hang.Id INNER JOIN
-                                    Phong_tro ON Hoadon_dien_nuoc.IDPhongTro = Phong_tro.Id AND Hop_dong.IDPhongTro = Phong_tro.Id AND Khach_hang.Id = Phong_tro.IDKhachHang
-                       WHERE Hoadon_dien_nuoc.TrangThai = ?
-                       ORDER BY Hoadon_dien_nuoc.Ma
-                       """;
-        try ( Connection con = DBConnect.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
+                SELECT Hoadon_dien_nuoc.Ma, Phong_tro.TenPhong, Khach_hang.TenKH, Hoadon_dien_nuoc.NgayTao, Hoadon_dien_nuoc.SoDien, Hoadon_dien_nuoc.SoNuoc, Hop_dong.GiaDien, Hop_dong.GiaNuoc, Hoadon_dien_nuoc.TongTien,
+                Hoadon_dien_nuoc.TienThieu, Hoadon_dien_nuoc.TrangThai
+                         FROM     Hoadon_dien_nuoc INNER JOIN
+                             Hop_dong ON Hoadon_dien_nuoc.IDHopDong = Hop_dong.Id INNER JOIN
+                             Khach_hang ON Hoadon_dien_nuoc.IDKhachHang = Khach_hang.Id AND Hop_dong.IDKhachHang = Khach_hang.Id INNER JOIN
+                             Phong_tro ON Hoadon_dien_nuoc.IDPhongTro = Phong_tro.Id AND Hop_dong.IDPhongTro = Phong_tro.Id AND Khach_hang.Id = Phong_tro.IDKhachHang
+                WHERE Hoadon_dien_nuoc.TrangThai = ?
+                ORDER BY Hoadon_dien_nuoc.Ma
+                """;
+        try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, trangthai);
             ResultSet rs = ps.executeQuery();
             List<HoaDonDienNuocViewModel> list = new ArrayList<>();

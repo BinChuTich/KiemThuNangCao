@@ -9,10 +9,10 @@ import DomainModel.HopDongTaiSan;
 import DomainModel.KhachHang;
 import DomainModel.PhongTro;
 import DomainModel.TaiSan;
+
 import java.util.List;
 
 /**
- *
  * @author PC ASUS
  */
 public interface IHopDongService {
@@ -48,13 +48,13 @@ public interface IHopDongService {
     List<TaiSan> getListTS();
 
     String add(HopDong hd);
-    
+
     String addKH(KhachHang kh);
 
     String addHDTS(HopDongTaiSan hdts);
 
     String update(HopDong hd, String idHD);
-    
+
     String getTSByIdTS(String idTS);
 
     List<HopDong> searchByTenKH(String tenKH);

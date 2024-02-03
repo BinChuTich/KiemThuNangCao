@@ -5,28 +5,28 @@
 package Repositories;
 
 import DomainModel.PhongTro;
+
 import java.util.List;
 
 /**
- *
  * @author PC ASUS
  */
 public interface IPhongTroRepository {
 
     List<PhongTro> getAll();
-    
+
     List<PhongTro> getListDSD();
 
     List<PhongTro> TimKiem(String tenPhong);
-    
+
     List<String> getListMa();
-    
+
     List<String> getListTen();
 
     List<String> getListTTLoaiPhong();
 
     String getIdByTTLoaiPhong(String ttlp);
-    
+
     String getTTLoaiPhongById(String id);
 
     boolean add(PhongTro pt);

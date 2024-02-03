@@ -2,31 +2,35 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
  */
-package Repositories.Impl;
+package Repositories;
 
 import DomainModel.HopDong;
 import DomainModel.HopDongTaiSan;
 import DomainModel.KhachHang;
 import DomainModel.PhongTro;
-import Repositories.IHopDongRepository;
+import DomainModel.TaiSan;
+import Repositories.Impl.HopDongRepositoryImpl;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Before;
 
 /**
  *
- * @author quach
+ * @author vungo
  */
-public class HopDongRepositoryImplTest {
-
+public class IHopDongRepositoryTest {
+    
     private IHopDongRepository hopDongRepository;
     private HopDong testHopDong;
 
-    public HopDongRepositoryImplTest() {
+    public IHopDongRepositoryTest() {
     }
 
     @Before
@@ -72,15 +76,18 @@ public class HopDongRepositoryImplTest {
     @Test
     public void testGetListTS() {
         assertNotNull(hopDongRepository.getListTS());
-    }
-
+    } 
+    
+// lỗi 
+    
     @Test
     public void testAdd() {
         UUID id = UUID.randomUUID();
         testHopDong.setId(String.valueOf(id));
         assertTrue(hopDongRepository.add(testHopDong));
     }
-
+// oke 
+    
     @Test
     public void testAddDuplicateHopDong() {
         // Tạo một đối tượng PhongTro đã tồn tại trong cơ sở dữ liệu
@@ -95,24 +102,26 @@ public class HopDongRepositoryImplTest {
         // Kiểm tra xem việc thêm có thành công hay không (nên thất bại vì ID đã tồn tại)
         assertFalse(result);
     }
-
+// sai
     @Test
     public void testUpdate() {
         assertTrue(hopDongRepository.update(testHopDong, "DD88F8A3-BD1C-498A-BBEF-A277FD3F5478"));
     }
-
+    
+// oke 
+    
     @Test
     public void testUpdateWithNullHopDong() {
         // Cập nhật với HopDong là null và kiểm tra xem cập nhật thất bại
         assertFalse(hopDongRepository.update(null, "DD88F8A3-BD1C-498A-BBEF-A277FD3F5478"));
     }
-
+// oke 
     @Test
     public void testUpdateWithNullId() {
         // Cập nhật với id là null và kiểm tra xem cập nhật thất bại
         assertFalse(hopDongRepository.update(testHopDong, null));
     }
-
+// lỗi 
     @Test
     public void testUpdateNgayTao() {
         UUID id = UUID.randomUUID();
@@ -131,7 +140,7 @@ public class HopDongRepositoryImplTest {
         assertNotEquals(ngayTaoCu, testHopDong.getNgTao());
 
     }
-
+// lỗi
     @Test
     public void testUpdateNgayKetThuc() {
         UUID id = UUID.randomUUID();
@@ -148,12 +157,12 @@ public class HopDongRepositoryImplTest {
         // Kiểm tra xem ngày kết thúc có bị thay đổi hay không
         assertNotEquals(ngayKTcu, testHopDong.getNgKT());
     }
-
+// oke
     @Test
     public void testGetListMa() {
         assertNotNull(hopDongRepository.getListMa());
     }
-
+// lỗi 
     @Test
     public void testGetLoaiPhongByIdPhong() {
 
@@ -167,7 +176,7 @@ public class HopDongRepositoryImplTest {
 
         assertEquals("Nhỏ", loaiPhong, "Loại phòng không khớp với kỳ vọng");
     }
-
+// lỗi 
     @Test
     public void testGetDienTichByIdPhong() {
         String idPhong = "14D7B03C-D0E5-4BC7-A0E3-2E64BF9445FC";
@@ -175,14 +184,14 @@ public class HopDongRepositoryImplTest {
 
         assertNotNull(dienTich);
     }
-
+// lỗi 
     @Test
     public void testGetDienTichByIdPhongWithNullId() {
         String dienTich = hopDongRepository.getDienTichByIdPhong(null);
 
         assertNotNull(dienTich);
     }
-
+// lỗi
     @Test
     public void testGetGiaPhongByIdPhong() {
         String idPhong = "14D7B03C-D0E5-4BC7-A0E3-2E64BF9445FC";
@@ -190,14 +199,14 @@ public class HopDongRepositoryImplTest {
 
         assertNotNull(giaPhong);
     }
-
+// oke 
     @Test
     public void testGetGiaPhongByIdPhongWithNullId() {
         String giaPhong = hopDongRepository.getGiaPhongByIdPhong(null);
 
         assertNull(giaPhong);
     }
-
+// lỗi 
     @Test
     public void testGetTenKHById() {
         String idKhachHang = "89E29416-0DF3-42FD-8556-78EC4C3FDEBE";
@@ -205,14 +214,14 @@ public class HopDongRepositoryImplTest {
 
         assertNotNull(tenKH);
     }
-
+// oke 
     @Test
     public void testGetTenKHByIdWithNullId() {
         String tenKH = hopDongRepository.getTenKHById(null);
 
         assertNull(tenKH);
     }
-
+// lỗi
     @Test
     public void testGetTenPTById() {
         String idPhongTro = "14D7B03C-D0E5-4BC7-A0E3-2E64BF9445FC";
@@ -220,14 +229,14 @@ public class HopDongRepositoryImplTest {
 
         assertNotNull(tenPT);
     }
-
+// oke 
     @Test
     public void testGetTenPTByIdWithNullId() {
         String tenPT = hopDongRepository.getTenPTById(null);
 
         assertNull(tenPT);
     }
-
+// lỗi 
     @Test
     public void testGetKHById() {
         String idKhachHang = "89E29416-0DF3-42FD-8556-78EC4C3FDEBE";
@@ -235,7 +244,7 @@ public class HopDongRepositoryImplTest {
 
         assertNotNull(kh);
     }
-
+// oke 
     @Test
     public void testGetKHByIdWithInvalidId() {
         String idKhachHang = "invalidKhachHangId14D7B03C-D0E5-4BC7-A0E3-2E64BF9445FC";
@@ -243,14 +252,14 @@ public class HopDongRepositoryImplTest {
 
         assertNull(kh);
     }
-
+// oke 
     @Test
     public void testGetKHByIdWithNullId() {
         KhachHang kh = hopDongRepository.getKHById(null);
 
         assertNull(kh);
     }
-
+// lỗi 
     @Test
     public void testGetPTById() {
         String idPhongTro = "14D7B03C-D0E5-4BC7-A0E3-2E64BF9445FC";
@@ -258,7 +267,7 @@ public class HopDongRepositoryImplTest {
 
         assertNotNull(pt);
     }
-
+// oke 
     @Test
     public void testGetPTByIdWithInvalidId() {
         String idPhongTro = "14D7B03C-D0E5-4BC7-A0E3-àasfasfasf";
@@ -266,14 +275,14 @@ public class HopDongRepositoryImplTest {
 
         assertNull(pt);
     }
-
+// oke 
     @Test
     public void testGetPTByIdWithNullId() {
         PhongTro pt = hopDongRepository.getPTById(null);
 
         assertNull(pt);
     }
-
+// lỗi 
     @Test
     public void testGetIdPTByTenPT() {
 
@@ -283,7 +292,7 @@ public class HopDongRepositoryImplTest {
         assertNotNull(idPT);
 
     }
-
+// oke 
     @Test
     public void testGetIdPTByTenPTWithInvalidTenPT() {
         String tenPhongTro = "invalidTenPhongTro";
@@ -291,14 +300,14 @@ public class HopDongRepositoryImplTest {
 
         assertNull(idPT);
     }
-
+// oke 
     @Test
     public void testGetIdPTByTenPTWithNullTenPT() {
         String idPT = hopDongRepository.getIdPTByTenPT(null);
 
         assertNull(idPT);
     }
-
+// lỗi 
     @Test
     public void testGetIdKHBySDT() {
         String sdt = "0375999124";
@@ -307,7 +316,7 @@ public class HopDongRepositoryImplTest {
 
         assertNotNull(idKH);
     }
-
+// oke 
     @Test
     public void testGetIdKHBySDTWithInvalidSDT() {
         String sdt = "invalidPhoneNumber";
@@ -315,14 +324,14 @@ public class HopDongRepositoryImplTest {
 
         assertNull(idKH);
     }
-
+// oke 
     @Test
     public void testGetIdKHBySDTWithNullSDT() {
         String idKH = hopDongRepository.getIdKHBySDT(null);
 
         assertNull(idKH);
     }
-
+// oke 
     @Test
     public void testSearchByTenKH() {
         String tenKH = "Thành";
@@ -330,7 +339,7 @@ public class HopDongRepositoryImplTest {
 
         assertNotNull(result);
     }
-
+// oke 
     @Test
     public void testSearchByTenKHWithInvalidTenKH() {
         String tenKH = "invalidTenKH";
@@ -338,35 +347,35 @@ public class HopDongRepositoryImplTest {
 
         assertNotNull(result);
     }
-
+// oke 
     @Test
     public void testSearchByTenKHWithNullTenKH() {
         List<HopDong> result = hopDongRepository.searchByTenKH(null);
 
         assertNotNull(result);
     }
-
+// oke 
     @Test
     public void testSearchHDConHan() {
         List<HopDong> result = hopDongRepository.searchHDConHan();
 
         assertNotNull(result);
     }
-
+// oke 
     @Test
     public void testSearchHDHetHan() {
         List<HopDong> result = hopDongRepository.searchHDHetHan();
 
         assertNotNull(result);
     }
-
+// oke 
     @Test
     public void testSearchHDSapHetHan() {
         List<HopDong> result = hopDongRepository.searchHDSapHetHan();
 
         assertNotNull(result);
     }
-
+// lỗi 
     @Test
     public void testAddHDTS() {
         UUID id = UUID.randomUUID();
@@ -381,7 +390,7 @@ public class HopDongRepositoryImplTest {
 
         assertTrue(result);
     }
-
+// oke 
     @Test
     public void testAddHDTSWithInvalidData() {
 
@@ -397,7 +406,7 @@ public class HopDongRepositoryImplTest {
         assertFalse(result);
         // Add assertions for the expected behavior when adding HDTS with invalid data
     }
-
+// oke 
     @Test
     public void testAddHDTSWithNullData() {
 
@@ -413,14 +422,14 @@ public class HopDongRepositoryImplTest {
         assertFalse(result);
         // Add assertions for the expected behavior when adding HDTS with null data
     }
-
+// oke 
     @Test
     public void testGetListHDTSByIdHD() {
         List<HopDongTaiSan> result = hopDongRepository.getListHDTSByIdHD(testHopDong.getId());
 
         assertNotNull(result);
     }
-    
+// oke 
     @Test
     public void testGetListHDTSByInvalidIdHD() {
         String invalidId = UUID.randomUUID().toString();
@@ -431,7 +440,7 @@ public class HopDongRepositoryImplTest {
         assertNotNull(result);
         assertTrue(result.isEmpty());
     }
-
+// lỗi 
     @Test
     public void testGetTSByIdTS() {
         String taiSanId = "6636BC53-ACC3-4C69-9C78-4E555C9A6D0F";
@@ -439,7 +448,7 @@ public class HopDongRepositoryImplTest {
 
         assertNotNull(result);
     }
-    
+// lỗi   
     @Test
     public void testGetTSByInvalidIdTS() {
         String invalidId = UUID.randomUUID().toString();
@@ -450,7 +459,7 @@ public class HopDongRepositoryImplTest {
         assertNull(result);
 
     }
-
+// lỗi 
     @Test
     public void testAddKH() {
         String invalidId = UUID.randomUUID().toString();
@@ -471,7 +480,7 @@ public class HopDongRepositoryImplTest {
 
         assertTrue(result);
     }
-    
+// oke  
     @Test
     public void testAddKHWithExistingData() {
         String existingKhachHangId = "existingId";
@@ -492,7 +501,7 @@ public class HopDongRepositoryImplTest {
 
         assertFalse(result);
     }
-
+// oke 
     @Test
     public void testAddKHWithNullId() {
         KhachHang khachHang = new KhachHang();
@@ -502,7 +511,7 @@ public class HopDongRepositoryImplTest {
 
         assertFalse(result);
     }
-
+// oke 
     @Test
     public void testAddKHWithEmptyMa() {
         KhachHang khachHang = new KhachHang();
@@ -521,5 +530,5 @@ public class HopDongRepositoryImplTest {
 
         assertFalse(result);
     }
-
+    
 }

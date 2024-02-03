@@ -9,16 +9,16 @@ import DomainModel.HopDongTaiSan;
 import DomainModel.KhachHang;
 import DomainModel.PhongTro;
 import DomainModel.TaiSan;
+
 import java.util.List;
 
 /**
- *
  * @author PC ASUS
  */
 public interface IHopDongRepository {
 
     List<HopDong> getAll();
-    
+
     List<HopDongTaiSan> getListHDTSByIdHD(String idHD);
 
     List<String> getListMa();
@@ -48,13 +48,13 @@ public interface IHopDongRepository {
     List<TaiSan> getListTS();
 
     boolean add(HopDong hd);
-    
+
     boolean addKH(KhachHang kh);
-    
+
     boolean addHDTS(HopDongTaiSan hdts);
 
     boolean update(HopDong hd, String idHD);
-    
+
     String getTSByIdTS(String idTS);
 
     List<HopDong> searchByTenKH(String tenKH);

@@ -5,20 +5,20 @@
 package Repositories;
 
 import DomainModel.LoaiPhong;
+
 import java.util.List;
 
 /**
- *
  * @author PC ASUS
  */
 public interface ILoaiPhongRepository {
 
     List<LoaiPhong> getAll();
-    
+
     List<LoaiPhong> TimKiem(String tenLP);
 
     List<String> getListMa();
-    
+
     List<String> getListTen();
 
     boolean add(LoaiPhong lp);

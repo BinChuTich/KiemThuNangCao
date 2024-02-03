@@ -7,10 +7,10 @@ package Services.Impl;
 import DomainModel.HoaDonPhong;
 import Repositories.Impl.HoaDonPhongRepositoryImpl;
 import Services.IHoaDonPhongService;
+
 import java.util.List;
 
 /**
- *
  * @author PC ASUS
  */
 public class HoaDonPhongServiceImpl implements IHoaDonPhongService {
