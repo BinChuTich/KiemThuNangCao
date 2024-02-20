@@ -8,6 +8,7 @@ import DomainModel.KhachHang;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import static junit.runner.Version.id;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -196,6 +197,276 @@ public class KhachHangRepositoryImplTest {
         KhachHangRepositoryImpl instance = new KhachHangRepositoryImpl();
         boolean result = instance.add(kh);
         assertTrue("Thêm thất bại thiếu ngày sinh", result);
+    }
+    @Test
+    public void addTrongEmail(){
+        System.out.println("Kiểm tra thêm đối tượng khi không truyền vào email");
+        UUID id = UUID.randomUUID();
+        KhachHang kh = new KhachHang();
+        kh.setId(String.valueOf(id));
+        kh.setTen("Thuan");
+        kh.setMa("KH01");
+        kh.setCccd("030203000818");
+        kh.setNgSinh(new Date("2002/02/02"));
+//        kh.setEmail("thuan@gmail.com");
+        kh.setSdt("0966580403");
+        kh.setGioiTinh(true);
+        kh.setDiaChi("Hải Dương");
+        KhachHangRepositoryImpl instance = new KhachHangRepositoryImpl();
+        boolean result = instance.add(kh);
+        assertTrue("Thêm thất bại thiếu email", result);
+    }
+    @Test
+    public void addTrongSDT(){
+        System.out.println("Kiểm tra thêm đối tượng khi không truyền vào số điện thoại");
+        UUID id = UUID.randomUUID();
+        KhachHang kh = new KhachHang();
+        kh.setId(String.valueOf(id));
+        kh.setTen("Thuan");
+        kh.setMa("KH01");
+        kh.setCccd("030203000818");
+        kh.setNgSinh(new Date("2002/02/02"));
+        kh.setEmail("thuan@gmail.com");
+//        kh.setSdt("0966580403");
+        kh.setGioiTinh(true);
+        kh.setDiaChi("Hải Dương");
+        KhachHangRepositoryImpl instance = new KhachHangRepositoryImpl();
+        boolean result = instance.add(kh);
+        assertTrue("Thêm thất bại thiếu số điện thoại", result);
+    }
+    @Test
+    public void addTrongGioiTinh(){
+        System.out.println("Kiểm tra thêm đối tượng khi không truyền vào giới tính");
+        UUID id = UUID.randomUUID();
+        KhachHang kh = new KhachHang();
+        kh.setId(String.valueOf(id));
+        kh.setTen("Thuan");
+        kh.setMa("KH01");
+        kh.setCccd("030203000818");
+        kh.setNgSinh(new Date("2002/02/02"));
+        kh.setEmail("thuan@gmail.com");
+        kh.setSdt("0966580403");
+//        kh.setGioiTinh(true);
+        kh.setDiaChi("Hải Dương");
+        KhachHangRepositoryImpl instance = new KhachHangRepositoryImpl();
+        boolean result = instance.add(kh);
+        assertTrue("Thêm thất bại thiếu giới tính", result);
+    }
+    @Test
+    public void addTrongDiaChi(){
+        System.out.println("Kiểm tra thêm đối tượng khi không truyền vào giới tính");
+        UUID id = UUID.randomUUID();
+        KhachHang kh = new KhachHang();
+        kh.setId(String.valueOf(id));
+        kh.setTen("Thuan");
+        kh.setMa("KH01");
+        kh.setCccd("030203000818");
+        kh.setNgSinh(new Date("2002/02/02"));
+        kh.setEmail("thuan@gmail.com");
+        kh.setSdt("0966580403");
+        kh.setGioiTinh(true);
+//        kh.setDiaChi("Hải Dương");
+        KhachHangRepositoryImpl instance = new KhachHangRepositoryImpl();
+        boolean result = instance.add(kh);
+        assertTrue("Thêm thất bại thiếu địa chỉ", result);
+    }
+    @Test
+    public void testUpdate_Successful() {
+        System.out.println("Kiểm tra sửa đối tượng Khách Hàng thành công");
+        
+        KhachHang kh = new KhachHang();
+        String id = "958df698-f785-422e-b4f3-0caaab3cea5c";
+        kh.setTen("Thuan");
+        kh.setMa("KH01");
+        kh.setCccd("030203000818");
+        kh.setNgSinh(new Date("2002/02/02"));
+        kh.setEmail("thuan@gmail.com");
+        kh.setSdt("0966580403");
+        kh.setGioiTinh(true);
+        kh.setDiaChi("Hải Dương");
+        
+
+        KhachHangRepositoryImpl instance = new KhachHangRepositoryImpl();
+
+        boolean result = instance.update(kh, id);
+
+        assertFalse("Sửa thành công", result);
+    }
+    @Test
+    public void testUpdateMa() {
+        System.out.println("Kiểm tra sửa đối tượng Khi Không nhập mã");
+        
+        KhachHang kh = new KhachHang();
+        String id = "958df698-f785-422e-b4f3-0caaab3cea5c";
+        kh.setTen("Thuan");
+//        kh.setMa("KH01");
+        kh.setCccd("030203000818");
+        kh.setNgSinh(new Date("2002/02/02"));
+        kh.setEmail("thuan@gmail.com");
+        kh.setSdt("0966580403");
+        kh.setGioiTinh(true);
+        kh.setDiaChi("Hải Dương");
+        
+
+        KhachHangRepositoryImpl instance = new KhachHangRepositoryImpl();
+
+        boolean result = instance.update(kh, id);
+
+        assertTrue("Sửa Thất bại", result);
+    }
+    @Test
+    public void testUpdateTen() {
+        System.out.println("Kiểm tra sửa đối tượng Khi Không nhập mã");
+        
+        KhachHang kh = new KhachHang();
+        String id = "958df698-f785-422e-b4f3-0caaab3cea5c";
+//        kh.setTen("Thuan");
+        kh.setMa("KH01");
+        kh.setCccd("030203000818");
+        kh.setNgSinh(new Date("2002/02/02"));
+        kh.setEmail("thuan@gmail.com");
+        kh.setSdt("0966580403");
+        kh.setGioiTinh(true);
+        kh.setDiaChi("Hải Dương");
+        
+
+        KhachHangRepositoryImpl instance = new KhachHangRepositoryImpl();
+
+        boolean result = instance.update(kh, id);
+
+        assertTrue("Sửa Thất bại", result);
+    }
+    @Test
+    public void testUpdateCCCD() {
+        System.out.println("Kiểm tra sửa đối tượng Khi Không nhập CCCD");
+        
+        KhachHang kh = new KhachHang();
+        String id = "958df698-f785-422e-b4f3-0caaab3cea5c";
+        kh.setTen("Thuan");
+        kh.setMa("KH01");
+//        kh.setCccd("030203000818");
+        kh.setNgSinh(new Date("2002/02/02"));
+        kh.setEmail("thuan@gmail.com");
+        kh.setSdt("0966580403");
+        kh.setGioiTinh(true);
+        kh.setDiaChi("Hải Dương");
+        
+
+        KhachHangRepositoryImpl instance = new KhachHangRepositoryImpl();
+
+        boolean result = instance.update(kh, id);
+
+        assertTrue("Sửa Thất bại", result);
+    }
+    @Test
+    public void testUpdateNgaySinh() {
+        System.out.println("Kiểm tra sửa đối tượng Khi Không nhập ngày sinh");
+        
+        KhachHang kh = new KhachHang();
+        String id = "958df698-f785-422e-b4f3-0caaab3cea5c";
+        kh.setTen("Thuan");
+        kh.setMa("KH01");
+        kh.setCccd("030203000818");
+//        kh.setNgSinh(new Date("2002/02/02"));
+        kh.setEmail("thuan@gmail.com");
+        kh.setSdt("0966580403");
+        kh.setGioiTinh(true);
+        kh.setDiaChi("Hải Dương");
+        
+
+        KhachHangRepositoryImpl instance = new KhachHangRepositoryImpl();
+
+        boolean result = instance.update(kh, id);
+
+        assertTrue("Sửa Thất bại", result);
+    }
+    @Test
+    public void testUpdateEmail() {
+        System.out.println("Kiểm tra sửa đối tượng Khi Không nhập email");
+        
+        KhachHang kh = new KhachHang();
+        String id = "958df698-f785-422e-b4f3-0caaab3cea5c";
+        kh.setTen("Thuan");
+        kh.setMa("KH01");
+        kh.setCccd("030203000818");
+        kh.setNgSinh(new Date("2002/02/02"));
+//        kh.setEmail("thuan@gmail.com");
+        kh.setSdt("0966580403");
+        kh.setGioiTinh(true);
+        kh.setDiaChi("Hải Dương");
+        
+
+        KhachHangRepositoryImpl instance = new KhachHangRepositoryImpl();
+
+        boolean result = instance.update(kh, id);
+
+        assertTrue("Sửa Thất bại", result);
+    }
+    @Test
+    public void testUpdateSDT() {
+        System.out.println("Kiểm tra sửa đối tượng Khi Không nhập số điện thoại");
+        
+        KhachHang kh = new KhachHang();
+        String id = "958df698-f785-422e-b4f3-0caaab3cea5c";
+        kh.setTen("Thuan");
+        kh.setMa("KH01");
+        kh.setCccd("030203000818");
+        kh.setNgSinh(new Date("2002/02/02"));
+        kh.setEmail("thuan@gmail.com");
+//        kh.setSdt("0966580403");
+        kh.setGioiTinh(true);
+        kh.setDiaChi("Hải Dương");
+        
+
+        KhachHangRepositoryImpl instance = new KhachHangRepositoryImpl();
+
+        boolean result = instance.update(kh, id);
+
+        assertTrue("Sửa Thất bại", result);
+    }
+    @Test
+    public void testUpdateHioiTinh() {
+        System.out.println("Kiểm tra sửa đối tượng Khi Không nhập giới tính");
+        
+        KhachHang kh = new KhachHang();
+        String id = "958df698-f785-422e-b4f3-0caaab3cea5c";
+        kh.setTen("Thuan");
+        kh.setMa("KH01");
+        kh.setCccd("030203000818");
+        kh.setNgSinh(new Date("2002/02/02"));
+        kh.setEmail("thuan@gmail.com");
+        kh.setSdt("0966580403");
+//        kh.setGioiTinh(true);
+        kh.setDiaChi("Hải Dương");
+        
+
+        KhachHangRepositoryImpl instance = new KhachHangRepositoryImpl();
+
+        boolean result = instance.update(kh, id);
+
+        assertTrue("Sửa Thất bại", result);
+    }
+    @Test
+    public void testUpdateDiaChi() {
+        System.out.println("Kiểm tra sửa đối tượng Khi Không nhập Địa chỉ");
+        
+        KhachHang kh = new KhachHang();
+        String id = "958df698-f785-422e-b4f3-0caaab3cea5c";
+        kh.setTen("Thuan");
+        kh.setMa("KH01");
+        kh.setCccd("030203000818");
+        kh.setNgSinh(new Date("2002/02/02"));
+        kh.setEmail("thuan@gmail.com");
+        kh.setSdt("0966580403");
+        kh.setGioiTinh(true);
+//        kh.setDiaChi("Hải Dương");
+        
+
+        KhachHangRepositoryImpl instance = new KhachHangRepositoryImpl();
+
+        boolean result = instance.update(kh, id);
+
+        assertTrue("Sửa Thất bại", result);
     }
     
 }
