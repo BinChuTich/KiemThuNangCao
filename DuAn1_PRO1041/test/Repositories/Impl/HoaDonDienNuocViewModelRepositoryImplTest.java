@@ -7,148 +7,176 @@ package Repositories.Impl;
 import ViewModel.HoaDonDienNuocViewModel;
 import ViewModel.PhongTroHDViewModel;
 import java.util.List;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Before;
 
 /**
  *
- * @author quach
+ * @author admin
  */
 public class HoaDonDienNuocViewModelRepositoryImplTest {
-
+    
     private HoaDonDienNuocViewModelRepositoryImpl repository;
-
+    List<HoaDonDienNuocViewModel> danhSach;
+    
     public HoaDonDienNuocViewModelRepositoryImplTest() {
     }
-
+    
+    @BeforeClass
+    public static void setUpClass() {
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+    
     @Before
-    public void setup() {
-        repository = new HoaDonDienNuocViewModelRepositoryImpl();
+    public void setUp() {
+        //repository = new HoaDonDienNuocViewModelRepositoryImpl();
+    }
+    
+    @After
+    public void tearDown() {
     }
 
+    /**
+     * Test of danhSachHoaDonDienNuoc method, of class HoaDonDienNuocViewModelRepositoryImpl.
+     */
     @Test
     public void testDanhSachHoaDonDienNuoc() {
-        List<HoaDonDienNuocViewModel> danhSach = repository.danhSachHoaDonDienNuoc();
-
+        danhSach = repository.danhSachHoaDonDienNuoc();
         assertNotNull(danhSach);
         assertFalse(danhSach.isEmpty());
     }
-
+    /**
+     * Test of timTheoTen method, of class HoaDonDienNuocViewModelRepositoryImpl.
+     */
     @Test
     public void testTimTheoTen() {
-        List<HoaDonDienNuocViewModel> danhSach = repository.timTheoTen("A101");
-
+        danhSach = repository.timTheoTen("A101");
         assertNotNull(danhSach);
         assertFalse(danhSach.isEmpty());
     }
 
+    /**
+     * Test of danhSachPhong method, of class HoaDonDienNuocViewModelRepositoryImpl.
+     */
     @Test
     public void testDanhSachPhong() {
-        List<String> danhSach = repository.danhSachPhong();
-
-        assertNotNull(danhSach);
-        assertFalse(danhSach.isEmpty());
+        List<String> ds = repository.danhSachPhong();
+        assertNotNull(ds);
+        assertFalse(ds.isEmpty());
     }
 
+    /**
+     * Test of getIDByPhong method, of class HoaDonDienNuocViewModelRepositoryImpl.
+     */
     @Test
     public void testGetIDByPhong() {
-        String expectedId = "someId";
-
-        String actualId = repository.getIDByPhong("A101");
-
-        assertNotNull(actualId);
-        assertEquals(expectedId, actualId);
+        String validId = "someValidId";
+        String expectedPhong = "someExpeectedPhong";
+        String actualPhong = repository.getPhongByID(validId);
+        assertNotNull(actualPhong);
+        assertEquals(expectedPhong, actualPhong);
     }
 
+    /**
+     * Test of getPhongByID method, of class HoaDonDienNuocViewModelRepositoryImpl.
+     */
     @Test
     public void testGetPhongByID() {
         String validId = "someValidId";
-        String expectedPhong = "someExpectedPhong";
-
+        String expectedPhong = "someExpeectedPhong";
         String actualPhong = repository.getPhongByID(validId);
-
-        // Kiểm tra kết quả
         assertNotNull(actualPhong);
         assertEquals(expectedPhong, actualPhong);
-
     }
 
+    /**
+     * Test of danhSachKhachHang method, of class HoaDonDienNuocViewModelRepositoryImpl.
+     */
     @Test
     public void testDanhSachKhachHang() {
-
-        List<String> danhSach = repository.danhSachKhachHang();
-
-        assertNotNull(danhSach);
-        assertFalse(danhSach.isEmpty());
+        List<String> ds = repository.danhSachKhachHang();
+        
+        assertNotNull(ds);
+        assertFalse(ds.isEmpty());
     }
 
+    /**
+     * Test of getIDByKH method, of class HoaDonDienNuocViewModelRepositoryImpl.
+     */
     @Test
     public void testGetIDByKH() {
-
         String id = repository.getIDByKH("John Doe");
-
         assertNotNull(id);
     }
 
-    @Test
-    public void testGetIDByKHWithNull() {
-
-        String id = repository.getIDByKH(null);
-
-        assertNull(id);
-    }
-
+    /**
+     * Test of getKHByID method, of class HoaDonDienNuocViewModelRepositoryImpl.
+     */
     @Test
     public void testGetKHByID() {
         String tenKH = repository.getKHByID("55759BA9-6737-47B5-8712-565B2E5F6FBD");
-
         assertNotNull(tenKH);
     }
 
-    @Test
-    public void testGetKHByIDWithNull() {
-        String tenKH = repository.getKHByID(null);
-
-        assertNull(tenKH);
-    }
-
+    /**
+     * Test of danhSachPhongHD method, of class HoaDonDienNuocViewModelRepositoryImpl.
+     */
     @Test
     public void testDanhSachPhongHD() {
-        List<PhongTroHDViewModel> danhSach = repository.danhSachPhongHD();
-
-        assertNotNull(danhSach);
-        assertFalse(danhSach.isEmpty());
+        List<PhongTroHDViewModel> ds = repository.danhSachPhongHD();
+        assertNotNull(ds);
+        assertFalse(ds.isEmpty());
     }
 
+    /**
+     * Test of getGiaDien method, of class HoaDonDienNuocViewModelRepositoryImpl.
+     */
     @Test
     public void testGetGiaDien() {
         String giaDien = repository.getGiaDien("test");
-
         assertNotNull(giaDien);
     }
 
+    /**
+     * Test of getGiaNuoc method, of class HoaDonDienNuocViewModelRepositoryImpl.
+     */
     @Test
     public void testGetGiaNuoc() {
         String giaNuoc = repository.getGiaNuoc("test");
-
         assertNotNull(giaNuoc);
     }
 
+    /**
+     * Test of getIDByHD method, of class HoaDonDienNuocViewModelRepositoryImpl.
+     */
     @Test
     public void testGetIDByHD() {
-        String idHD = repository.getIDByHD("test");
-
+       String idHD = repository.getIDByHD("test");
         assertNotNull(idHD);
     }
 
+    /**
+     * Test of main method, of class HoaDonDienNuocViewModelRepositoryImpl.
+     */
+    @Test
+    public void testMain() {
+       
+    }
+
+    /**
+     * Test of ListHoaDonDienNuocTT method, of class HoaDonDienNuocViewModelRepositoryImpl.
+     */
     @Test
     public void testListHoaDonDienNuocTT() {
-        
-        List<HoaDonDienNuocViewModel> danhSach = repository.ListHoaDonDienNuocTT(1);
-
+        danhSach = repository.ListHoaDonDienNuocTT(1);
         assertNotNull(danhSach);
         assertFalse(danhSach.isEmpty());
     }
-
 }

@@ -1,0 +1,6 @@
+Repositories.Impl.TaiSanRepositoryImplTest$3
+Repositories.Impl.TaiSanRepositoryImplTest$2
+Repositories.Impl.TaiSanRepositoryImplTest$1
+Repositories.Impl.TaiSanRepositoryImplTest$5
+Repositories.Impl.TaiSanRepositoryImplTest$4
+Repositories.Impl.TaiSanRepositoryImplTest

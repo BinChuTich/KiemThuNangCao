@@ -126,3 +126,4 @@ ALTER TABLE Phong_tro ADD FOREIGN KEY (IDKhachHang) REFERENCES Khach_hang(Id)
 select *from Khach_hang
 
 delete Khach_hang where id = '60EBD2F0-9037-45D3-A829-FA5D023C554D'
+
