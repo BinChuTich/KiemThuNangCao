@@ -29,6 +29,11 @@ public class HoaDonPhong {
     public HoaDonPhong() {
     }
 
+    public HoaDonPhong(String ma, double tongTien) {
+        this.ma = ma;
+        this.tongTien = tongTien;
+    }
+
     public HoaDonPhong(String id, String ma, int thang, Date ngTao, double tongTien, boolean trangThai, String idPT, String idKH) {
         this.id = id;
         this.ma = ma;
@@ -39,7 +44,7 @@ public class HoaDonPhong {
         this.idPT = idPT;
         this.idKH = idKH;
     }
-    
+
     public HoaDonPhong(String id, String ma, Date ngTao, double tongTien, boolean trangThai, String idPT, String idKH, String idHD) {
         this.id = id;
         this.ma = ma;
