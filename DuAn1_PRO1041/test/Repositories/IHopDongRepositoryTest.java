@@ -530,5 +530,113 @@ public class IHopDongRepositoryTest {
 
         assertFalse(result);
     }
+    // moiws
     
+    @Test
+    public void testAddKHhWithEmptyMa() {
+        KhachHang khachHang = new KhachHang();
+        khachHang.setId("2");
+        khachHang.setMa(""); // Ma dể rỗng
+        khachHang.setTen("Nguyen Truc Nhan ");
+        khachHang.setCccd("012345789");
+        khachHang.setNgSinh(new Date());
+        khachHang.setEmail("nguyentrucn@example.com");
+        khachHang.setSdt("0395789474");
+        khachHang.setGioiTinh(false);
+        khachHang.setDiaChi("09 Main Street");
+        // Nhap các thuộc tính khác cho KhachHang
+
+        boolean result = hopDongRepository.addKH(khachHang);
+
+        assertFalse(result);
+    }
+    
+     @Test
+    public void testGetTSSByIdTS() {
+        String taiSanId = "5636BC53-ACC3-4C9-9C78-6E55C9A6D0F";
+        String result = hopDongRepository.getTSByIdTS(taiSanId);
+
+        assertNotNull(result);
+    }
+    
+     @Test
+    public void testSearchByTenKHlWithInvalidTenKH() {
+        String tenKH = "TenKHl";
+        List<HopDong> result = hopDongRepository.searchByTenKH(tenKH);
+
+        assertNotNull(result);
+    }
+     @Test
+    public void testGetIdKHBySDTkhac() {
+        String sdt = "0347068376";
+
+        String idKH = hopDongRepository.getIdKHBySDT(sdt);
+
+        assertNotNull(idKH);
+    }
+    
+     @Test
+    public void testAddKH02() {
+        String invalidId = UUID.randomUUID().toString();
+        
+        KhachHang khachHang = new KhachHang();
+        khachHang.setId(invalidId);
+        khachHang.setMa("KH02");
+        khachHang.setTen("Vu Minh Dai");
+        khachHang.setCccd("097847878");
+        khachHang.setNgSinh(new Date());
+        khachHang.setEmail("vuminhdai@example.com");
+        khachHang.setSdt("0123478949");
+        khachHang.setGioiTinh(true);
+        khachHang.setDiaChi("03 Main Street");
+        // Nhap các thuộc tính khác cho KhachHang
+
+        boolean result = hopDongRepository.addKH(khachHang);
+
+        assertTrue(result);
+    }
+    @Test
+    public void testSearchByTenKHNhan() {
+        String tenKH = "Nhan";
+        List<HopDong> result = hopDongRepository.searchByTenKH(tenKH);
+
+        assertNotNull(result);
+    }
+     @Test
+    public void testGetTen2PTById() {
+        String idPhongTro = "Sof304";
+        String tenPT = hopDongRepository.getTenPTById(idPhongTro);
+
+        assertNotNull(tenPT);
+    }
+    
+    @Test
+    public void testGetPTByIdphong() {
+        String idPhongTro = "PH01";
+        PhongTro pt = hopDongRepository.getPTById(idPhongTro);
+
+        assertNotNull(pt);
+    }
+    @Test
+    public void testSearchByTenKHTrung() {
+        String tenKH = "Trung";
+        List<HopDong> result = hopDongRepository.searchByTenKH(tenKH);
+
+        assertNotNull(result);
+    }
+    @Test
+    public void testAddSWithNullData() {
+
+        HopDongTaiSan hdts = new HopDongTaiSan();
+        hdts.setId("009");
+        hdts.setIdHD(testHopDong.getId());
+        hdts.setIdTS(null);
+        hdts.setSoLuong(04);
+        // Set other necessary attributes for HopDongTaiSan
+
+        boolean result = hopDongRepository.addHDTS(hdts);
+
+        assertFalse(result);
+        // Add assertions for the expected behavior when adding HDTS with null data
+    }
 }
