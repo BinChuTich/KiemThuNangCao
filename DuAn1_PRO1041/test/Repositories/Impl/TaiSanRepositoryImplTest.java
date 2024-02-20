@@ -51,6 +51,26 @@ public class TaiSanRepositoryImplTest {
     }
 
     @Test
+    public void testAdd_Successful2() {
+        System.out.println("Kiểm tra thêm đối tượng Tài sản 2");
+        TaiSan ts = new TaiSan("id2", "ma 2", "Hung123", 2220, 120);
+        TaiSanRepositoryImpl instance = new TaiSanRepositoryImpl();
+
+        boolean result = instance.add(ts);
+        assertFalse("Thêm thành công", result);
+
+    }
+
+    @Test 
+    public void testAdd_Successful3(){
+        System.out.println("Kiểm tra thêm đối tượng Tài sản 3");
+        TaiSan ts = new TaiSan("id2", "ma 2", "Hung123", 2220, 120);
+        TaiSanRepositoryImpl instance = new TaiSanRepositoryImpl();
+
+        boolean result = instance.add(ts);
+        assertFalse("Thêm thành công", result);
+    }
+    @Test
     public void testAdd_Failure_InsufficientInformation1() {
         System.out.println("Kiểm thử thêm đối tượng thất bại khi điền thiếu thông tin!");
 
@@ -100,6 +120,23 @@ public class TaiSanRepositoryImplTest {
     }
 
     @Test
+    public void testAdd_Failure_MissingMa() {
+
+        System.out.println("Kiem tra them doi tượng tài sản thiếu mã  ");
+
+        TaiSan ts = new TaiSan();
+
+        ts.setTen("Hung");
+        ts.setGia(2000);
+        ts.setSoLuong(200);
+
+        TaiSanRepositoryImpl instance = new TaiSanRepositoryImpl();
+        boolean result = instance.add(ts);
+        assertTrue("Thêm thất bại khi thiếu mã", result);
+
+    }
+
+    @Test
     public void testAdd_Failure_MissingSoLuong() {
         System.out.println("Kiểm tra thêm đối tượng TaiSan thất bại khi thiếu Số lượng");
 
@@ -111,6 +148,42 @@ public class TaiSanRepositoryImplTest {
         TaiSanRepositoryImpl instance = new TaiSanRepositoryImpl();
         boolean result = instance.add(ts);
         assertTrue("Thêm thất bại khi thiếu Số lượng", result);
+    }
+
+    @Test
+    public void tesAdd_Failure_KituMa() {
+        System.out.println("Kiểm tra thêm đối tượng Mã không được chưa kí tự ");
+
+        TaiSan ts = new TaiSan();
+
+        ts.setMa("/*-+");
+        ts.setTen("Hung");
+        ts.setGia(21);
+        ts.setSoLuong(20);
+
+        TaiSanRepositoryImpl instance = new TaiSanRepositoryImpl();
+
+        boolean result = instance.add(ts);
+
+        assertTrue("Thêm thất Bại khi thiếu giá", result);
+    }
+
+    @Test
+    public void tesAdd_Failure_KituTen() {
+        System.out.println("Kiểm tra thêm đối tượng Mã không được chưa kí tự ");
+
+        TaiSan ts = new TaiSan();
+
+        ts.setMa("ma3");
+        ts.setTen("/*-!@");
+        ts.setGia(21);
+        ts.setSoLuong(20);
+
+        TaiSanRepositoryImpl instance = new TaiSanRepositoryImpl();
+
+        boolean result = instance.add(ts);
+
+        assertTrue("Thêm thất Bại khi thiếu giá", result);
     }
 
     @Test
@@ -127,6 +200,59 @@ public class TaiSanRepositoryImplTest {
     }
 
     @Test
+    public void testUpdateten() {
+        System.out.println("Kiểm tra sửa khi không nhập ten ");
+        TaiSan ts = new TaiSan();
+        String id = "2";
+        ts.setMa("ma2");
+        ts.setSoLuong(2000);
+        ts.setGia(20);
+        TaiSanRepositoryImpl instance = new TaiSanRepositoryImpl();
+        boolean result = instance.update(ts, id);
+        assertTrue("Sửa Thất Bại", result);
+    }
+
+    @Test
+    public void testUpdateMa() {
+        System.out.println("Kiểm tra sửa khi không nhập Ma ");
+        TaiSan ts = new TaiSan();
+        String id = "2";
+        ts.setTen("Hung");
+        ts.setSoLuong(2000);
+        ts.setGia(20);
+        TaiSanRepositoryImpl instance = new TaiSanRepositoryImpl();
+        boolean result = instance.update(ts, id);
+        assertTrue("Sửa Thất Bại", result);
+    }
+
+    @Test
+    public void testUpdateGia() {
+        System.out.println("Kiểm tra sửa khi không nhập Giá ");
+        TaiSan ts = new TaiSan();
+        String id = "2";
+        ts.setMa("ma3");
+        ts.setTen("Hung");
+        ts.setSoLuong(2000);
+//        ts.setGia(20);
+        TaiSanRepositoryImpl instance = new TaiSanRepositoryImpl();
+        boolean result = instance.update(ts, id);
+        assertTrue("Sửa Thất Bại", result);
+    }
+
+    @Test
+    public void testUpdateSoLuong() {
+ System.out.println("Kiểm tra sửa khi không nhập Số Lượng ");
+        TaiSan ts = new TaiSan();
+        String id = "2";
+        ts.setMa("ma3");
+        ts.setTen("Hung");
+//        ts.setSoLuong(2000);
+        ts.setGia(20);
+        TaiSanRepositoryImpl instance = new TaiSanRepositoryImpl();
+        boolean result = instance.update(ts, id);
+        assertTrue("Sửa Thất Bại", result);
+    }
+
     public void testUpdate_Failure_InsufficientInformation1() {
         System.out.println("Kiểm tra sửa đối tượng TaiSan không thành công khi điền không đủ thông tin");
 
